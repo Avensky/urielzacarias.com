@@ -1,0 +1,21 @@
+.Account {
+    text-align:center;
+}
+.Account img{
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.Account h2,
+.Account label,
+.Account p{
+    text-align:left;
+}
+
+.Account input[type="file"] {
+    margin-bottom: 20px;
+    padding: 0;
+    border: none;
+}

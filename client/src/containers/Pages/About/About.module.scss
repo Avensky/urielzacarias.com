@@ -1,0 +1,59 @@
+.About {
+    margin: 12vh 5vw;
+    padding: 2vh 4vw;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.figure {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+//    float: right;
+}
+
+.figure img {
+    text-align: center;
+    width: 100%;
+    border-radius: 50%;
+    //float: right;
+}
+
+
+.bio {
+    //display: flex;
+
+}
+
+.column {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+	.About {
+        margin: 12vh 15vw;
+    }
+
+    .Projects {
+		flex-direction:row;
+		flex-wrap: wrap;
+	}
+}
+
+@media only screen and (min-width: 1025px) {
+    /* For desktop: */
+    .About {
+        margin: 12vh 15vw;
+    }
+    
+    .figure {
+        width: 300px;
+        float: right;
+    }
+
+    .column {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+} 

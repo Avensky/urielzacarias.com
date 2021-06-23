@@ -1,0 +1,63 @@
+.Register {
+    width: 80%;
+    padding: 2%;
+    margin: 20px auto;
+    box-shadow: 0 2px 3px #ccc;
+    grid-area: content;
+    justify-content: center;
+    width: 620px;
+    background-color: rgba(34,84,112,0.35);
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    
+}
+
+.Register label {
+    display: block;
+    margin: 10px auto;
+    font-weight: bold;
+}
+
+.Register input,
+.Register textarea,
+.Register select {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    outline: none;
+    font: inherit;
+    margin: 5px 0 0 0;
+    background: #f1f1f1;
+}
+
+.Register button {
+    margin: 5px 0;
+    padding: 10px;
+    font: inherit;
+    border: 1px solid #fa923f;
+    background-color: transparent;
+    color: #fa923f;
+    cursor: pointer;
+
+
+    background-color: darkcyan;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.Register button:hover,
+.Register button:active {
+    color: white;
+    background-color: #fa923f;
+}

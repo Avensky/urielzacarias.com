@@ -7,7 +7,7 @@ const app           = express()
 const PORT          = process.env.PORT || 5000;
 const bodyParser    = require('body-parser')
 const cookieParser  = require('cookie-parser');
-const session       = require('express-session')
+const session       = require('cookie-session')
 const passport      = require('passport')
 const mongoose      = require('mongoose')
 const keys          = require('./config/keys')
@@ -16,7 +16,7 @@ const flash         = require('connect-flash')
 // const cookieSession = require('cookie-session');
 
 // configuration ===============================================================
-require('./app/models/User');
+require('./app/models/user');
 //require('./app/models/Post');
 require('./config/passport')(passport); // pass passport for configuration
 

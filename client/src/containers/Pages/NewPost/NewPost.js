@@ -104,11 +104,11 @@ class NewPost extends Component {
         )
         
         return (
-            <Layout grid="new">
+            <div>
                 <Header />
                 {errorMessage}
                 {form}
-            </Layout>
+            </div>
             
         );
     }

@@ -164,10 +164,10 @@ class Account extends Component {
             )
         }
         return(
-            <Layout grid="new">
+            <div>
                 <Header />
                 {account}
-            </Layout>
+            </div>
         )
     }
 }

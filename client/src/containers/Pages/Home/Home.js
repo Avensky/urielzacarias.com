@@ -295,15 +295,12 @@ class Home extends Component {
         
         return (
             <Auxiliary>
-                <Layout>
                     <div id="home" className={classes.Next}></div>
                     {section1}
                     <div id="skills" className={classes.Next}></div>
                     {section2}
                     <div id="projects" className={classes.Next}></div>
                     {section3}
-
-                </Layout>
             </Auxiliary>
         ) 
     }

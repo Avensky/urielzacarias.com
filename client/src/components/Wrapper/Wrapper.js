@@ -6,7 +6,7 @@ import Navbar from '../Navigation/Navbar/Navbar';
 import Sidebar from '../Navigation/Sidebar/Sidebar';
 import Background from '../UI/Background/Background';
 import * as actions from '../../store/actions/index'
-
+import Footer from '../../containers/Layout/Footer/Footer'
 class Wrapper extends Component {
     state = {
         showSidebar: false
@@ -31,7 +31,7 @@ class Wrapper extends Component {
 
     render () {
         return (    
-            <Auxiliary>
+            <div className={classes.Wrapper}>
                 <Background />
                 <Navbar 
                     isLogged                ={this.props.isLoggedIn}
@@ -44,11 +44,11 @@ class Wrapper extends Component {
                     closed                  ={this.sidebarClosedHandler} 
                     logout                  = {this.logoutHandler}
                 />
-                <main className={classes.Wrapper}>
+                <main className={classes.Main}>
                     {this.props.children}
-                    
                 </main>
-            </Auxiliary>
+                <Footer />
+            </div>
         )
     }
 }

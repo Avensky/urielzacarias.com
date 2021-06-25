@@ -1,3 +1,15 @@
+.BlogLayout {
+    margin: 0 1vw;
+ //   width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+	grid-template-areas:
+		"header"
+        "content" 
+        "archives"
+
+}
 .Blog { 
     margin: 0 0vw;
     grid-area: content; 
@@ -53,4 +65,32 @@
 .Blog a:hover,
 .Blog a:active {
     color: #fa923f;
+}
+
+
+
+@media only screen and (min-width: 600px) {
+
+    .BlogLayout {
+        margin: 0 5vw;
+        grid-template-rows: 1fr min-content;
+        grid-template-columns: 65vw 25vw;
+        grid-gap: 0 1vw;
+        grid-template-areas:
+            "header header"
+            "content archives"
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+
+    .BlogLayout {
+        margin: 0 15vw;
+        grid-template-rows: 1fr min-content;
+        grid-template-columns: 55vw 15vw;
+        grid-gap: 0 1vw;
+        grid-template-areas:
+            "header header"
+            "content archives"
+    }
 }

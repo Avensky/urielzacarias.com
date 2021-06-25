@@ -317,7 +317,6 @@ const Auth = props => {
     }
 
     return(
-        <Layout>
             <div className={[classes.Card, myClasses.Auth].join(' ')}>
             {authRedirect}
             {authSelector}
@@ -343,8 +342,6 @@ const Auth = props => {
             </Formik>
             {socialAuth}
         </div> 
-
-        </Layout>
     )
     
 }

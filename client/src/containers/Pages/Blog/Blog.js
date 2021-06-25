@@ -103,14 +103,14 @@ class Blog extends Component {
         }
 
         return (
-            <Layout grid="blog">
+            <div className={classes.BlogLayout}>
                 <Header >All Posts</Header>
                 <section className={classes.Blog}>
                     {featuredPost}
                     {blogPosts}
                 </section>
                 {archives}
-            </Layout>
+            </div>
         )
     }
 }

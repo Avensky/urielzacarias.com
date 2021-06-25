@@ -182,7 +182,7 @@ class Login extends Component {
         }
 
         return(
-            <Layout>
+            <div>
                 {loginRedirect}
            
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
@@ -220,7 +220,7 @@ class Login extends Component {
                     <p>Forgot Password?</p>
                     <div className={classes.borderTop + classes.pt3}  />
                 </div>
-            </Layout>
+            </div>
         )
     }
 }

@@ -36,7 +36,6 @@ const about = () => {
 
     </div>
     return(
-    <Layout grid="one">
         <div className={myClasses.About}>
             <figure className={myClasses.figure}>
                 <img src={user} alt='user image' />
@@ -83,10 +82,7 @@ const about = () => {
             
                         {/*  Icon Section   */}
                      
-                   
         </div>
-
-    </Layout>
     )
 }
 export default about;

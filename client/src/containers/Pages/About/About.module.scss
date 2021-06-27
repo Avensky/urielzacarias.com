@@ -1,5 +1,5 @@
 .About {
-    margin: 0 5vw;
+    margin: 10vh 5vw 0;
     padding: 2vh 4vw;
     background-color: rgba(0, 0, 0, 0.85);
 }
@@ -34,6 +34,7 @@
     /* For tablets: */
 	.About {
         margin: 0 15vw;
+        padding: 11vh 4vw;
     }
 
     .Projects {
@@ -46,7 +47,7 @@
     /* For desktop: */
     .About {
         margin: 0 15vw;
-        padding: 11vh 0;
+        padding: 11vh 4vw;
         //height: 100%;
     }
     

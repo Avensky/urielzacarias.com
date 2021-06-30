@@ -5,6 +5,7 @@
 const express       = require('express')
 const app           = express()
 const PORT          = process.env.PORT || 5000;
+const LOCAL	    = "127.0.0.1";
 const bodyParser    = require('body-parser')
 const cookieParser  = require('cookie-parser');
 const session       = require('cookie-session')
@@ -86,7 +87,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-app.listen(PORT, (err) =>{
+app.listen(PORT, LOCAL, (err) =>{
     if(!err)
         console.log('server started running on: ' + PORT);
     else

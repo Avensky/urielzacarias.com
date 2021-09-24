@@ -1,0 +1,37 @@
+.Sidebar {
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    background-color: rgb(10, 1, 22);
+    padding: 8vh 1vw;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+    text-align: center;
+}
+
+.Logo {
+    //width: auto;
+    //height: 6rem;
+    //margin: 1vh auto 3vh;
+}
+.Logo img {
+ //height: 6rem;
+}
+
+@media (min-width: 600px) {
+    .Sidebar {
+        display: none;
+    }
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(-100%);
+}

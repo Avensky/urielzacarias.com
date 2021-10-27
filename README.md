@@ -1,1 +1,22 @@
-# urielzacarias.com
+
+# Personal Website, Blog, and Portfolio
+
+## Express Server With React Front End 
+
+## Local and Social Media Login Authentication
+
+We will be using Passport to authenticate users locally, with Facebook, Twitter, and Google.
+
+## Instructions
+
+If you would like to download the code and try it for yourself:
+
+1. Clone the repo: `git clone git@github.com:Avensky/`
+2. Install server packages: cd server `npm install`
+3. Install client packages: cd ../client `npm install`
+cd 5. Edit the dev.js file to match your credentials
+6. Launch: cd ../server `npm run dev`
+7. Visit in your browser at: `http://localhost:3000`
+
+
+

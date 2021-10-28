@@ -2,6 +2,7 @@ import React, {Component}from 'react';
 import './Home.module.scss';
 import Layout from '../../Layout/Layout';
 import classes from './Home.module.scss';
+import caringvegan from '../../../assets/images/caringvegan2.png';
 import author from '../../../assets/images/author2.png';
 import github from '../../../assets/images/github.png';
 import linkedin from '../../../assets/images/linkedin.png';
@@ -124,6 +125,19 @@ class Home extends Component {
                         </div>
                     </div>     
                     <div className={classes.Projects}>
+                        <Project 
+                            btn="CaringVegan Online Store"
+                            pic={caringvegan}
+                            link={'https://caringvegan.com/'}
+                            description="Mordern mobile first approach to online shopping"
+                            item1='ReactJs'
+                            item2='ExpressJs'
+                            item3='MongoDb'
+                            item4='Stripe'
+                            item5='Redux'
+                            item6='CSS'
+                            item7='HTML'
+                        />
                         <Project 
                             btn="Book and Author's Website"
                             pic={author}
@@ -294,14 +308,14 @@ class Home extends Component {
         // )
         
         return (
-            <Auxiliary>
+            <div className={classes.HomeWrapper}>
                     <div id="home" className={classes.Next}></div>
                     {section1}
                     <div id="skills" className={classes.Next}></div>
                     {section2}
                     <div id="projects" className={classes.Next}></div>
                     {section3}
-            </Auxiliary>
+            </div>
         ) 
     }
 }

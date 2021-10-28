@@ -1,15 +1,24 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
+.page-wrapper {
+  min-height: 84vh;
+  margin: 3vh 1vw;
+  padding: 1vh 1vw 2vh;
+}
 
- nav ul a,
- nav .brand-logo {
-   color: #444;
- }
+.page-body {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.header {
+  padding: 1vh 2vw;
+}
+
+
+.material-icons {
+  font-size: 16px;
+}
  
  p {
    line-height: 2rem;
@@ -29,7 +38,12 @@
      width: 100%;
    }
  
- @media only screen and (max-width : 992px) {
+   @media only screen and (min-width: 600px) {
+  .page-wrapper {
+    margin: 6vh 5vw 0;
+    padding: 1vh 5vw 2vh;
+}
+
    .parallax-container .section {
      position: absolute;
      top: 40%;
@@ -39,7 +53,11 @@
    }
  }
  
- @media only screen and (max-width : 600px) {
+ @media only screen and (min-width: 1025px) {
+  .page-wrapper {
+    margin: 6vh 10vw 0;
+    padding: 1vh 5vw 2vh;
+  }
    #index-banner .section {
      top: 0;
    }

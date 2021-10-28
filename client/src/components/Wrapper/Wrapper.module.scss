@@ -7,9 +7,8 @@
     height: 100%;
 }
  .Main {
-     min-height: 100vh;
-     height: 100%;
-     padding: 0 0 60vh;
+     min-height: 84vh;
+
  }
 // .Wrapper {
 //     margin-top: 1vh;
@@ -27,9 +26,6 @@
     .Layout {
         padding: 6vh 0 0;
     }
-    .Main {
-        padding-bottom: 35vh;
-    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -38,7 +34,4 @@
         padding: 6vh 0 0;
     }
 
-    .Main {
-        padding-bottom: 25vh;
-    }
 }

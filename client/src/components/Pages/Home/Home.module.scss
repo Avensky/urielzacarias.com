@@ -1,0 +1,46 @@
+.Section1 {
+	overflow: auto;
+}
+
+.Home {
+	text-align: center;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.Home h1{
+	font-size: 2.5em;
+	color: #9cdee7;
+	text-shadow: 2px 2px 4px #000000;
+}
+.Home h4{
+	font-size: 1.5em;
+	text-shadow: 2px 2px 2px #000000;
+}
+.Skip {
+	background-color: rgba(4, 0, 10, 0.75);
+	border: 1px solid grey;
+	font-size: 1.15em;
+	cursor: pointer;
+	width:fit-content;
+	border-radius: 5px;
+	margin: 2vh auto 0;
+	padding: 0.5vh 3vw
+}
+
+.Skip:hover {
+	border: 1px solid rgb(145, 144, 144);
+	background-color: rgba(6, 0, 15, 0.75);
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+}
+
+@media only screen and (min-width: 1025px) {
+    /* For desktop: */
+
+}

@@ -1,0 +1,32 @@
+.Link h3 {
+  margin: 1vh 0;
+}
+.authBtn {
+   color: white;
+   margin: 1vh 0;
+   height: 51px;
+   font-size: 1em;
+}
+.authBtn a{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2vh 4vw;
+}
+
+.icon {
+    margin: 0 1vw;
+}
+
+.Details{
+  overflow-wrap: break-word;
+}
+
+@media only screen and (min-width: 600px) {
+  .authBtn {
+      margin: 2vh 0;
+
+  }
+}
+@media only screen and (min-width: 1025px) {
+
+}

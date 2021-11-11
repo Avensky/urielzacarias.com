@@ -1,0 +1,71 @@
+.Project {
+	width: 100%;
+	margin: 0vh 0vw 5vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.CardThumbnail {
+	background-color: rgb(9, 0, 17);
+	font-size: 1.5em;
+	text-align: center;
+	padding: 1vh 2vw 3vh;
+}
+
+.ThumbnailTitle {
+	margin: 0vh 0 1vh;
+}
+
+.picWrapper { 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height:fit-content
+}
+
+.CardThumbnail img{
+	width:100%
+}
+
+.description{
+	background-color: rgba(0, 0, 0, 0.85);
+	padding: 1vh 5vw 2vh;
+}
+.descriptionTitle {
+	font-size: 1.2em;
+}
+
+.description ul{
+	margin-left: 50px;
+}
+
+.description li{
+	list-style-type: disc !important;
+}
+
+@media only screen and (min-width: 600px) {
+    /* For TABLET: */
+	.Project {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.CardThumbnail, .description {
+		width: 50%;
+	}
+}
+@media only screen and (min-width: 1025px) {
+    /* For desktop: */
+//	.container{
+//		width: 100%;
+//		display: flex;
+//	}
+//
+
+//	.description {
+//		width: 50%;
+//	}
+	.Project {
+	
+	}
+}

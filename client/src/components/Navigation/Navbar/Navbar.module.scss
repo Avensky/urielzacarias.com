@@ -1,32 +1,34 @@
 .Navbar {
-    height: 4.5vh;                                    
+    height: 51px;
     width: 100%;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.9);
-    //background-color: rgba(34, 83, 112, 0.05);
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
+    background-color: rgb(4, 0, 10);;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2vw;
+    padding: 0 4vw;
     box-sizing: border-box;
-    white-space: nowrap;
     z-index: 90;
-    color: #005c74;
-    box-shadow: none;
+    color: white;
+    white-space: nowrap;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #afe4f7;
 }
 
+.Navbar i {cursor: pointer}
+
+.user {padding: 0 0vw 0 3vw;}
 
 .Navbar a {
+    color: white;
     height: 100%;
     margin: 0;
     align-items: center;
 }
 
-.Navbar nav {
-    height: 100%;
-}
+.Navbar nav {height: 100%;}
 
 .Navbar .Mobile {
     display: flex;
@@ -37,84 +39,42 @@
 }
 
 .Mobile a {
+    display: flex;
+    text-align: center;
+    align-items: center;
     height: 80%;
     padding: 0;
 }
 
-.Navbar h2,
-.Navbar h3 {
-    margin: 0;
-}
-
-
-a:hover {
-    color: white;
-}
-
-a:active {
-    color: white;
-    text-decoration: none;
-
-}
-
-a:link {
-    text-decoration: white;
-}
-  
-a:visited {
-    text-decoration: white;
-}
-
-.DesktopOnly {
-    display: none;
-    text-align: center;
-}
-.fa {
-    height: 1vh;
-}
-
-
+.DesktopOnly {display: none}
 
 .Logo {
-    //height: 100%;
-    padding: 1px;
+    height: 100%;
     display: flex;
     text-align: center;
     align-items: center;
 }
 
+.LogoName {
+    height: 100%;
+    font-size: 1.5em;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SidebarToggle {font-size: 1.5em;}
+
 @media only screen and (min-width: 600px) {
     /* For tablets: */
-    .DesktopOnly {
-        display: inherit;
-    }
-
-    .Navbar .MobileLinks, .Navbar .Logo {
-        display: none;
-    }
-
-    .Navbar {
-        justify-content: center;
-    }
+    .DesktopOnly {display: none;}
 }
 
 @media only screen and (min-width: 1025px) {
     /* For desktop: */
-    .DesktopOnly {
-        display: inherit;
-    }
-
-    .Navbar .MobileLinks, .Navbar .Logo {
-        display: none;
-    }
-
-    .Navbar {
-        justify-content: center;
-    }
-
-    a {
-        padding: 0;
-        
-    }
-
+    .DesktopOnly {display: inherit;}
+    .LogoName {height: 100%}
+    .Navbar .MobileLinks, 
+    .Navbar .Logo {display: none;}
+    .Navbar {justify-content: center;}
 }

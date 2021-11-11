@@ -1,0 +1,82 @@
+.Footer {
+    border-top: 1px solid #afe4f7;
+    flex-shrink: 0;
+    padding: 1vh 1vw;
+    background-color: black;
+    padding: 3vh 5vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    grid-template-areas: 
+      "bio" 
+      "connect" 
+      "projects"
+    ;
+}
+
+.Footer li {
+    list-style: none;
+}
+
+.Copyright {
+    border-top: 1px solid #afe4f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.Copyright a{
+    cursor: pointer;
+}
+
+.bio      { grid-area: bio;}
+.connect  { grid-area: connect;}
+.projects { grid-area: projects;}
+
+a {color: white;}
+ul {padding-inline-start: 0;}
+li{list-style: none;}
+
+.PaymentTypes{
+    display: flex;
+    justify-content:left;
+    
+}
+.PaymentTypes img{
+    margin: 1vh 1vw;
+    padding: 0 .5vw;
+    background-color: white;
+}
+
+.Social ul{
+    display: flex;
+    justify-content: left;
+}
+
+.Social li {
+    font-size: 24px;
+    margin: 0 1vw;
+}
+
+.Contact span {
+    width: 1em;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .Footer {
+        padding: 0 5vw;
+        grid-template-areas: 
+        "bio connect projects";
+        grid-template-columns: 3fr 1fr 2fr;
+    }
+}
+@media only screen and (min-width: 1025px) {
+    .PaymentTypes img{
+        margin: 1vh .5vw;
+    }
+    .Social li{
+        margin: 0vh .5vw;
+    }
+}

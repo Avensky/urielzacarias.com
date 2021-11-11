@@ -1,56 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
-import Auxiliary from '../../hoc/Auxiliary';
 import classes from './Wrapper.module.scss';
 import Navbar from '../Navigation/Navbar/Navbar';
 import Sidebar from '../Navigation/Sidebar/Sidebar';
 import Background from '../UI/Background/Background';
-import * as actions from '../../store/actions/index'
-import Footer from '../../containers/Layout/Footer/Footer'
-class Wrapper extends Component {
-    state = {
-        showSidebar: false
-    }
-//    componentDidMount() {
-//        this.props.onFetchUser();
-//    }
+import * as actions from '../../store/actions/index';
+import Footer from '../UI/Footer/Footer';
+const Wrapper = props =>  {
+    const [showSidebar, setShowSidebar] = useState(false)
+    const sidebarToggleHandler          = () => {setShowSidebar(!showSidebar)}
+    const closeSidebarHandler           = () => {setShowSidebar(false)}
+    useLayoutEffect(() => {window.scrollTo(0, 0)})
 
-    sidebarClosedHandler = () => {
-        this.setState({showSidebar: false})
-    }
-// best practice to set state in a clean way when it depends on a previous state
-    sidebarToggleHandler = () => {
-        this.setState(( prevState ) => {
-            return {showSidebar: !prevState.showSidebar};
-        });
-    }
-
-    logoutHandler = () => {
-        this.props.onLogout()        
-    }
-
-    render () {
-        return (    
-            <div className={classes.Wrapper}>
-                <Background />
-                <Navbar 
-                    isLogged                ={this.props.isLoggedIn}
-                    sidebarToggleClicked    ={this.sidebarToggleHandler} 
-                    logout                  = {this.logoutHandler}
-                />
-                <Sidebar 
-                    isLogged                ={this.props.isLoggedIn}
-                    open                    ={this.state.showSidebar} 
-                    closed                  ={this.sidebarClosedHandler} 
-                    logout                  = {this.logoutHandler}
-                />
-                <main className={classes.Main}>
-                    {this.props.children}
-                </main>
+    return (    
+        <div className={classes.Wrapper}>
+            <Background />
+            <Navbar 
+                isLogged                = {props.isLoggedIn}
+                sidebarToggleClicked    = {sidebarToggleHandler} 
+            />
+            <Sidebar 
+                isLogged                = {props.isLoggedIn}
+                open                    = {showSidebar} 
+                closed                  = {closeSidebarHandler} 
+            />
+            <main className={classes.Main}>
+                {props.children}
                 <Footer />
-            </div>
-        )
-    }
+            </main>
+            
+        </div>
+    )
+    
 }
 const mapStateToProps = state => {
     return {
@@ -59,9 +40,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts:  () => dispatch( actions.fetchPosts()),
         onFetchUser: () => dispatch(actions.fetchUser()),
-        onLogout: () => dispatch(actions.logout())
     }
 }
 

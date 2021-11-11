@@ -1,0 +1,40 @@
+.BlogLayout {padding: 2vh 0vw;}
+
+.Blog {
+    display: flex;
+    flex-direction: column;
+}
+
+.Content { 
+    box-sizing: border-box;
+    grid-area: content; 
+    background-color: rgba(0, 0, 17);
+    padding: 0 5vw 2vh;
+    min-height: 35vh;
+}
+
+.Archives {
+    margin: 2vh 0;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .BlogLayout {padding: 2vh 2vw;}
+
+    .Blog {
+        flex-direction: row;
+    }
+    .Content {
+        width: 69%;
+        margin-right:1%;
+    }
+    .Archives {
+        margin: 0;
+        width:29%;
+        margin-left:1%;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .BlogLayout {padding: 2vh 15vw;}
+}

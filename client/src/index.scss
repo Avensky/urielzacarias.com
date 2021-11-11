@@ -1,4 +1,8 @@
+html  {height: 100%}
+#root {height: 100%}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,35 +16,44 @@ code {
     monospace;
 }
 
-a { 
-  color:white;
-  text-decoration: none;
-}
+a {text-decoration: none;}
 
-.auth-btn {
-  background-color: rgb(45, 17, 77);
-  background-color: #6623d3;
-}
-
-.auth-btn:hover {
-  color: rgb(255, 255, 255);
-  background-color: #5b1fbd;
-}
-
-.btn { 
+.btn {
+  appearance: auto;
+  -webkit-writing-mode: horizontal-tb !important;
   width: 100%;
-  padding: 1vh 1vw;
-  margin: 1vh 0;
-  color: rgb(255, 255, 255);
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //padding: 1vh 1vw;
+  margin: 0em;
   border-radius: 4px;
-  background-color: rgb(219, 158, 43);
   cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  border-width: 1px;
+  border-style: outset;
+  //border-color: internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+  box-sizing: border-box;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-rendering: auto;
 }
-.btn:hover          {background-color: rgb(192, 137, 35) ;}
 
 .auth-btn           { background-color: #6623d3;}
 .my-auth-btn        { color: #6623d3;}
 .auth-btn:hover     { background-color: #5b1fbd;}
+
+.btn-default        { background-color: #db9e2b;}
+.my-btn-default     { color: #db9e2b;}
+.btn-default:hover  { background-color: #c08b29;}
 
 .btn-primary        { background-color: #357ebd;}
 .my-btn-primary     { color: #357ebd;}
@@ -52,125 +65,50 @@ a {
 
 .btn-danger         { background-color: #d9534f;}
 .my-btn-danger      { color: #d9534f;}
-.btn-danger:hover   { background-color: #cc4f4b;}
+.btn-danger:hover   { background-color: #be4c48;}
 
-.color-orange {
-  color:rgb(255, 220, 124)
-}
+.btn-delete         { background-color: #921c18;}
+.my-btn-delete      { color: #921c18;}
+.btn-delete:hover   { background-color: #d6322c;}
 
-.container {
-  margin: 5vh 0 0;
-  width: 100% !important;
-}
+.btn-cancel         { background-color: #464343;}
+.my-btn-cancel      { color: #464343;}
+.btn-cancel:hover   { background-color: #6e6b6b;}
 
-input               { color: black !important; }
-input:checked         { background-color: black !important; }
-input::selection  
-
-
-{ background-color: transparent !important; }
-
-/* Change Autocomplete styles in Chrome*/
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  //border: 1px solid green;
-  -webkit-text-fill-color: white;
- // -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-.parallax img {
-  opacity: 100% !important;
-}
-.spread {
-  display: flex;
-  justify-content: space-between;
-}
+.btn-edit          { background-color: rgb(4, 107, 107);}
+.my-btn-edit      { color: rgb(4, 107, 107)}
+.btn-edit:hover   { background-color: rgb(5, 143, 143)}
 
 .text-center        { text-align: center; }
 .text-right         { text-align: right; }
-.text-left         { text-align: left; }
+.text-left          { text-align: left; }
+.pointer            { cursor: pointer;}
+.margin-top-0       { margin-top:  0;}
 
-.pointer {
-  cursor: pointer;
+.page-wrapper {
+  min-height: 94vh;
+  margin-top: 51px;
+  //overflow: hidden;
+  flex: 1 0 auto;
 }
 
-.border-bottom {
-  border-bottom: 3px solid #E1E8EE;
-  padding: 0;
-}
-
-option { 
-  /* Whatever color  you want */
-  background-color: #221a00;
-  padding: 1vh 1vw;
-}
-
-.flex {
+.spread {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  //flex-direction: row;
 }
 
-.margin-side {
-  padding: 0 .5vw;
+.material-icons {
+  font-size: 1.5em;
 }
-
-button {
-  padding: 0;
-}
-
-.one-line {
-  //white-space: nowrap; 
-  overflow: hidden;
-}
-
-.footer {
-  background-color: rgba(0, 0, 0, 0.85);
-  padding: 3vh 5vw;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  grid-gap: 20px;
-  grid-template-areas: 
-    "bio" 
-    "connect" 
-    "projects"
-  ;
-}
-
-.bio {
-  grid-area: bio;
-}
-
-.connect{
-  grid-area: connect;
-}
-
-.projects {
-  grid-area: projects;
-}
-
-
-
 
 @media only screen and (min-width: 600px) {
-  /* For tablets: */
+  .page-wrapper {
+    min-height: 50vh;
+  }
 }
-
 @media only screen and (min-width: 1025px) {
-  /* For desktop: */
-  .footer {
-    padding: 0 5vw;
-    grid-template-areas: 
-    "bio connect projects";
-    grid-template-columns: 3fr 1fr 1fr;
+  .page-wrapper {
   }
 }

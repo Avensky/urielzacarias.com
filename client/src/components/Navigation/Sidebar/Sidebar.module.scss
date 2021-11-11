@@ -6,23 +6,18 @@
     left: 0;
     top: 0;
     z-index: 200;
-    background-color: rgb(10, 1, 22);
-    padding: 8vh 1vw;
+    background-color: rgb(4, 0, 10);;
+    padding: 32px 16px;
     box-sizing: border-box;
     transition: transform 0.3s ease-out;
     text-align: center;
+    flex-direction: column;
+}
+.DesktopOnly {
+    display: none;
 }
 
-.Logo {
-    //width: auto;
-    //height: 6rem;
-    //margin: 1vh auto 3vh;
-}
-.Logo img {
- //height: 6rem;
-}
-
-@media (min-width: 600px) {
+@media only screen and (min-width: 1025px) {
     .Sidebar {
         display: none;
     }
@@ -34,4 +29,9 @@
 
 .Close {
     transform: translateX(-100%);
+}
+
+.Logo {
+    height: 15%;
+    margin-bottom: 50px;
 }

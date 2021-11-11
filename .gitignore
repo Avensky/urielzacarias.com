@@ -1,19 +1,27 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+INSTRUCTIONS.md
 # dependencies
 /node_modules
 client/node_modules
+server/node_modules
 /.pnp
 .pnp.js
-config/dev.js
+dev.js
 config/secrets.js
+config/config.env
 INSTRUCTIONS.md
+package-lock.json
+client/package-lock.json
+server/package-lock.json
+yarn.lock
+.cert
+
 # testing
 /coverage
-
+devFiles
 # production
-/build
 /client/build
+/build
 
 # misc
 .DS_Store

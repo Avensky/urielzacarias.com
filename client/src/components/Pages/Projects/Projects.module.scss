@@ -1,0 +1,20 @@
+.ProjectsLayout{
+    padding: 2vh 0;
+}
+.Projects {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 600px) {
+    .ProjectsLayout{
+        padding: 2vh 5vw;
+    }
+}
+@media only screen and (min-width: 1025px) {
+    .ProjectsLayout{
+        padding: 2vh 15vw;
+    }
+}

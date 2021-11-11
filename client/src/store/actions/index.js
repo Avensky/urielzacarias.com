@@ -1,43 +1,45 @@
 export {
-    login,
+    fetchUser,
+    fetchUsers,
+    connect,
     auth,
     fbAuth,
     setAuthRedirectPath,
     newAddress,
-    newAddressStart,
-    connect,
-    logout,
-    loginCheckState,
-    setLoginRedirectPath,
-    fetchUser,
-    getUser
+    newAddressStart
 } from './auth';
-
-export {
-    newPost,
-    newPostStart,
-    setNewPostRedirectPath,
-} from './newPost';
 
 export {
     fetchPosts,
     fetchPostsById,
     deletePost,
     fetchPostsByYear,
-    fetchPostsByMonth
+    fetchPostsByMonth,
+    newPost,
+    newPostStart,
+    setNewPostRedirectPath,
+    updatePost
 } from './blog'
 
 export {
-    updateUser,
-} from './account'
+    getItems,
+    addToCart,
+    removeItem,
+    subtractQuantity,
+    addQuantity,
+    loadCart,
+    loadShop,
+    orderBy,
+    newItem,
+    newItemStart,
+    getItemById,
+    getItemByType,
+    deleteItem, 
+    updateItem,
+
+} from './shop';
 
 export {
-    newUser,
-    newUserStart,
-    setNewUserRedirectPath
-} from './newUser'
-
-export {
-    deleteUser,
-    deleteUserStart
-} from './deleteUser'
+    fetchOrders,
+    fetchOrdersStart,
+} from './orders'

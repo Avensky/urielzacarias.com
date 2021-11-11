@@ -1,12 +1,19 @@
 import axios from 'axios'
 import * as actionTypes from './actionTypes'
 
-export const fetchPostsSuccess = (fetchedPosts) => {
+/*******************************************
+********************************************
+ * Get Blog Posts
+********************************************
+*******************************************/
+
+export const fetchPostsSuccess = (posts) => {
     return {
         type:  actionTypes.FETCH_POSTS_SUCCESS,
-        posts: fetchedPosts.slice(0, fetchedPosts.length-1).reverse(),
-        featuredPost: fetchedPosts.slice(fetchedPosts.length - 1, fetchedPosts.length),
-        fetchedPosts: fetchedPosts
+        posts: posts,
+        //posts: fetchedPosts.slice(0, fetchedPosts.length-1).reverse(),
+        //featuredPost: fetchedPosts.slice(fetchedPosts.length - 1, fetchedPosts.length),
+        //fetchedPosts: fetchedPosts
     }
 }
 export const fetchPostsFail = (error) => {
@@ -25,22 +32,20 @@ export const fetchPosts = () => {
         dispatch(fetchPostsStart());
         axios.get( '/api/posts')
         .then( result => {
-            console.log(result)
             const posts = result.data
-//            const fetchedPosts = []
-//                for ( let key in posts ) {
-//                    fetchedPosts.push( {
-//                        ...result.data[key],
-//                        id: key
-//                    } );
-//                }
                 dispatch(fetchPostsSuccess(posts));
             } )
             .catch( error => {
+                console.log('blog error = ', error)
                 dispatch(fetchPostsFail(error));
             } );
     };
 }
+/*******************************************
+********************************************
+ * Get Blog Post
+********************************************
+*******************************************/
 
 export const fetchPostsByIdSuccess = (fetchedPostsById) => {
     return {
@@ -62,13 +67,11 @@ export const fetchPostsByIdStart = () => {
 export const fetchPostsById = (id) => {
     return dispatch => {
         dispatch(fetchPostsByIdStart());
-        axios.get( '/api/getpostDetails/' + id)
+        axios.get( '/api/getpost/' + id)
         .then( result => {
-            console.log(result)
-            const fetchedPostsById = result.data
-//            const fetchedPostsById = {id: id}
-//            const obj = {...post, ...fetchedPostsById}
-            dispatch(fetchPostsByIdSuccess(fetchedPostsById));
+            //console.log(result)
+            const post = result.data
+            dispatch(fetchPostsByIdSuccess(post));
         })
         .catch( error => {
             dispatch(fetchPostsByIdFail(error));
@@ -76,9 +79,58 @@ export const fetchPostsById = (id) => {
     };
 }
 
+/*******************************************
+********************************************
+ * New Blog Post
+********************************************
+*******************************************/
+export const setNewPostRedirectPath  = (path) =>{
+    return{
+        type: actionTypes.SET_NEW_POST_REDIRECT_PATH,
+        path: path
+    }
+}
 
-export const deletePostSuccess = () => {
+export const newPostStart  = () =>{ 
+    console.log('newPostStart')
+    return { 
+        type: actionTypes.NEW_POST_START 
+    } }
+
+export const newPostFail = (error) => {
     return {
+        type: actionTypes.NEW_POST_FAIL,
+        error: error
+    }}
+
+export const newPostSuccess = (message) => {
+    return {
+        type: actionTypes.NEW_POST_SUCCESS,
+        message: message,
+    }}
+
+export const newPost = (values) => {
+    return dispatch => {
+        dispatch(newPostStart())
+        axios.post('/api/addPost', values)
+            .then(response => {
+                console.log('addPost',response.data);
+                dispatch(newPostSuccess(response.data))
+        })
+        .catch(error => {
+            console.log('addPost', error);
+            dispatch(newPostFail(error))
+        })    
+    }}
+
+/*******************************************
+********************************************
+ * Delete Blog Post
+********************************************
+*******************************************/
+export const deletePostSuccess = (message) => {
+    return {
+        message : message,
         type:  actionTypes.DELETE_POST_SUCCESS, 
     }
 }
@@ -100,7 +152,7 @@ export const deletePost = (id) => {
         axios.delete( '/api/deletepost/' + id)
         .then( result => {
             console.log(result);
-            dispatch(deletePostSuccess());
+            dispatch(deletePostSuccess(result.data));
         })
         .catch( error => {
             dispatch(deletePostFail(error));
@@ -108,7 +160,52 @@ export const deletePost = (id) => {
     };
 }
 
+/*******************************************
+********************************************
+ * Update Blog Post
+********************************************
+*******************************************/
+export const updatePostSuccess = (message) => {
+    return {
+        //id: id,
+        message : message,
+        type    : actionTypes.UPDATE_POST_SUCCESS, 
+    }
+}
+export const updatePostFail = (error) => {
+    return {
+        type    : actionTypes.UPDATE_POST_FAIL, 
+        error   : error
+    }
+}
+export const updatePostStart = () => {
+    return {
+        type    : actionTypes.UPDATE_POST_START
+    }
+}
 
+export const updatePost = (values,id) => {
+    console.log('updatePost values',values)
+    console.log('updatePost id',id)
+    return dispatch => {
+        dispatch(updatePostStart());
+        axios.post( '/api/updatepost/' + id, values)
+        .then( result => {
+            console.log(result);
+            const message = result.data
+            dispatch(updatePostSuccess(message));
+        })
+        .catch( error => {
+            dispatch(updatePostFail(error));
+        });
+    };
+}
+
+/*******************************************
+********************************************
+ * Get Blog Posts
+********************************************
+*******************************************/
 export const fetchPostsByYearSuccess = (fetchedPostsByYear) => {
     return {
         type: actionTypes.FETCH_POSTS_BY_YEAR_SUCCESS,
@@ -129,7 +226,7 @@ export const fetchPostsByYearStart = () => {
 export const fetchPostsByYear = (year) => {
     return dispatch => {
         dispatch(fetchPostsByYearStart());
-        axios.get( '/api/archive/' + year)
+        axios.get('/api/archive/' + year)
         .then( result => {
             console.log(result)
             const fetchedPostsByYear = result.data
@@ -143,7 +240,11 @@ export const fetchPostsByYear = (year) => {
     };
 }
 
-
+/*******************************************
+********************************************
+ * Get Blog Posts
+********************************************
+*******************************************/
 export const fetchPostsByMonthSuccess = (fetchedPostsByMonth) => {
     return {
         type: actionTypes.FETCH_POSTS_BY_MONTH_SUCCESS,

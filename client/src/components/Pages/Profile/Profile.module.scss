@@ -1,0 +1,21 @@
+.ProfileLayout{
+    padding: 2vh 0;
+}
+.Profile{
+    background-color: rgba(0, 0, 17, 0.95);
+    padding: 2vh 5vw 5vh;
+}
+
+@media only screen and (min-width: 600px) {
+    .ProfileLayout{
+        padding: 2vh 10vw;
+    }
+    .Profile {
+        padding: 2vh 10vw 5vh;
+    }
+}
+@media only screen and (min-width: 1025px) {
+    .ProfileLayout{
+        padding: 2vh 15vw;
+    }
+}

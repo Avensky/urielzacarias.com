@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Footer.module.scss'
-//import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Footer = (props) => {
         return (
@@ -13,6 +13,19 @@ const Footer = (props) => {
                     </div>
                     <div className={classes.connect}>
                         <h3 className="white-text">Categories</h3>
+                        <ul className={classes.NavLinks}>
+                            <NavLink to="/home" myClass="LogoName" exact>Home</NavLink>
+                            <NavLink to="/projects"                exact>Projects</NavLink>
+                            <NavLink to="/about"                   exact>About</NavLink>
+                            <NavLink to="/blog"                    exact>Blog</NavLink>
+                            {props.isAuthenticated != null ? <NavLink to="/profile"          >Profile</NavLink> : null}
+                            {props.isAuthenticated != null ? <NavLink to="/orders"          >Orders</NavLink> : null}
+
+                            {props.isLogged != null ? <NavLink to="/profile"          >Profile</NavLink> : null}
+                            {!props.isLogged
+                                ? <NavLink to="/authentication"   >Sign in / Sign up</NavLink>
+                                : <div className={classes.NavLink}><a  href="/api/logout">Logout</a></div>}
+                        </ul>
                         {/*<ul>
                             <li className={classes.OrderbarItem} id="#all"      onClick={()=> props.getItems()}                ><NavLink to='/shop'         exact>All Items </NavLink></li>
                             <li className={classes.OrderbarItem} id="#hat"      onClick={()=> props.getItemByType('hat')}      ><NavLink to='/shop#hat'     exact>Hats      </NavLink></li>

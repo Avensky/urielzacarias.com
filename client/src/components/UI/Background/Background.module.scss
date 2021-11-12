@@ -1,11 +1,9 @@
-.VideoWrapper {
+.BackgroundWrapper {
 	width: 100%;
 	text-align: center;
 	overflow: hidden;
-	text-align: center;
 }
-
-video {
+.BackgroundWrapper {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -18,4 +16,22 @@ video {
  	background-color: black;
   background-size: cover;
   transition: 1s opacity;
+}
+.BackgroundWrapper video{
+  //display: none;
+}
+.BackgroundWrapper img {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+
+}
+@media only screen and (min-width: 1025px) {
+  .BackgroundWrapper video{
+      display: inherit;
+  }
+  .BackgroundWrapper img {
+    display: none;
+  }
 }

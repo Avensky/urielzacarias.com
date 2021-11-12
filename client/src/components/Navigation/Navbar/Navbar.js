@@ -26,8 +26,12 @@ const navbar = ( props ) => {
                         ? <div className={classes.NavItem}><a  href="/api/logout">Logout </a></div>
                     : null*/}          
                     {props.isLogged !== null
-                        ? <NavLink to="/profile"   ><h3><span className={["fa fa-user", classes.user].join(' ')} /></h3></NavLink>
-                        :<NavLink to="/authentication"   ><h2 className={classes.NavItemLogo}><span className="fa fa-sign-in" /></h2></NavLink>
+                        ? <NavLink to="/profile">
+                            <h2 className={classes.NavItemLogo}><span className={["fa fa-user", classes.user].join(' ')} /></h2>
+                        </NavLink>
+                        : <NavLink to="/authentication">
+                            <h2 className={classes.NavItemLogo}><span className={["fa fa-sign-in", classes.user].join(' ')} /></h2>
+                        </NavLink>
                     }                                  
                 </h2>
             </div>

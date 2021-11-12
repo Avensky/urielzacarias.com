@@ -41,26 +41,17 @@ const About = () => {
                 <h1>Hello World, I'm Uriel Zacarias.</h1>
                 <div className={classes.bio}>
                     <p>
-                        I am a full stack web developer looking for an opportunity to grow. 
-                        I began developing full stack web applications in May of 2019.
-                    </p>
-
-                    <p>    
-                        I began learning by reading a book called "Learn Python the Hard way" by Zed A. Shaw. 
-                        It was July of 2018 when I decided to build web applications by immersion. 
-                    </p>
-                    
-                    <p>    
-                        I got my first FrontEnd certificate, "Responsive Web Design", from FreeCodeCamp in March 2019. 
-                        Then I completed the "Full Stack Web Developer" Nanodegree at Udacity in September 2019. 
-                        This certificate focused on building web applications using a Linux server with a Python(Flask) framework.
+                        I am a full stack web developer looking for an opportunity to grow.   
+                        I got my first certificate, "Responsive Web Design", from FreeCodeCamp in March 2019. 
+                        I then completed the "Full Stack Web Developer" Nanodegree at Udacity in September 2019. 
+                        This certificate focused on building web applications using a Linux server (Ubuntu) and a Flask (Python) framework.
                     </p>
                     
                     <p>
-                        I've since then focused my research on Javascript heavy frameworks. 
+                        I've since then focused my research on Javascript frameworks. 
                         I completed "React-The Complete Guide (Incl Hooks, React Router, Redux)" certificate at Udemy, in April 2020. 
-                        My preference and strength building websites has become Express.js and React.js.
-                        </p>
+                        I preffer building web applications using Express.js and React.js, although I am open to learning new technologies.
+                    </p>
                 </div>
                 {/*  Icon Section   */}
                 {column}

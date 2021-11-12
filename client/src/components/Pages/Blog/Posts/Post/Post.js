@@ -8,14 +8,14 @@ const Post = (props) => {
     const [modal, setModal] = useState(false)
     const modalHandler = () => { setModal(true) }
     const cancelHandler = () => { setModal(false) }
-    
-    return(
-        
-    <article className={[classes.Post,classes.Card,props.clName].join(' ')} onClick={props.clicked}>
+    return(<article className={[classes.Post,classes.Card,props.clName].join(' ')} onClick={props.clicked}>
         {props.date     ? <div className={classes.CardDate}><p>{props.date}</p></div>           : null}
         {props.title    
-            ? <div className={classes.CardTitle}>
-                <Link to={'/blog/fullpost/' + props.id}><h1>{props.title}</h1></Link>
+            ? <div className={classes.Title}>
+                <NavLink 
+                    to={'/blog/fullpost/' + props.id}
+                    className={classes.Title}
+                >{props.title}</NavLink>
             </div>         
             : null}
         {props.content  ? <div className={classes.CardDescription}><p>{props.content}</p></div> : null}
@@ -61,7 +61,7 @@ const Post = (props) => {
             : null}
 
         {props.author&&props.time 
-            ? <div className={classes.CardAuthor}><p>Posted by {props.author} at {props.time}</p></div>       
+            ? <div className={classes.CardAuthor}><p>Posted by {props.author} at {props.time} </p></div>       
             : null}
     </article>
 )}

@@ -22,6 +22,14 @@ export {
 } from './blog'
 
 export {
+    getComments,
+    updateComment,
+    deleteComment,
+    postComment,
+    postCommentStart,
+} from './comments'
+
+export {
     getItems,
     addToCart,
     removeItem,

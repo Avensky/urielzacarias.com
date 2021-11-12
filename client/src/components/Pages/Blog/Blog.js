@@ -15,7 +15,7 @@ const Blog =(props)=> {
 
 
     const loadData = async (paramId) => { 
-        console.log('blog getPost')
+        console.log('blog getPost', paramId)
         history.push('/blog/fullpost/'+paramId)
         //props.getPost(paramId)
     }
@@ -37,16 +37,16 @@ const Blog =(props)=> {
             return (
                 <div key={post._id} className={classes.Posts}>
                     <Post
-                        id={post._id}
-                        author={post.author}
-                        content={post.content}
-                        date={date}
-                        lines={4}
-                        title={post.title} 
-                        time={time}
-                        //clName={classes.BlogPost}
-                        //klName={classes.EditOff}
-                        // clicked={() => postClickedHandler(post._id)}
+                        id       = {post._id}
+                        author   = {post.author}
+                        content  = {post.content}
+                        date     = {date}
+                        lines    = {4}
+                        title    = {post.title} 
+                        time     = {time}
+                        blog     = {true}
+                        //clicked  = {loadData}
+                        //comments = {props.comments || []}
                     />
                 </div>
             )
@@ -79,7 +79,8 @@ const Blog =(props)=> {
 const mapStateToProps = state => {
     return {
         posts   : state.blog.posts,
-        loading : state.blog.loading
+        loading : state.blog.loading,
+        user    : state.auth.payload
     }
 }
 

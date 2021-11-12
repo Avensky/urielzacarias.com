@@ -1,0 +1,30 @@
+.Comment {
+    background-color: rgb(6, 6, 39);
+    padding: 0 2vw 1vh;
+    margin: 0 0 2vh;
+    display: flex;
+    flex-direction: column;
+}
+.AuthorWrapper{
+    font-size: .8em;
+    margin: .8vh 0;
+    //display: flex;
+    //align-items: center;
+}
+.Author {
+    color:rgb(238, 122, 122);
+    display: inline;
+    font-size: 1.2em;
+}
+
+.Date {
+    color:rgb(199, 198, 198);
+}
+
+.Content {
+    margin: .8vh 0;
+}
+
+.Edit {
+    //display: flex;
+}

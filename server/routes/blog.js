@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const Post = mongoose.model('Blog');
+const mongoose  = require('mongoose');
+const Post      = mongoose.model('Blog');
+const Comment   = mongoose.model('Comment');
 
 module.exports = app => {
     app.get('/api/archive/month',(req,res) => {
@@ -44,12 +45,16 @@ module.exports = app => {
 ********************************************
 *******************************************/
   app.post('/api/addPost',(req,res) => {        //add a new post
-//    const { title, author, content} = req.body;
+    let author 
+    req.user
+        ? author = req.user._id.toString()
+        : author = 'Anonymous'
+        
     const postObj = new Post({
-        title : req.body.title,
-        author : req.user._id,
+        title   : req.body.title,
+        author  : author,
         content : req.body.content,
-        date : new Date()
+        date    : new Date()
     })
     postObj.save((err)=>{
         if(err){
@@ -59,6 +64,7 @@ module.exports = app => {
             res.send('Post published successfully!');
     })
   });
+
 /*******************************************
 ********************************************
  * Get Blog Post By Id
@@ -113,4 +119,96 @@ module.exports = app => {
         }
     })
   });
+
+
+  
+/*******************************************
+********************************************
+ * Post Comment
+********************************************
+*******************************************/
+app.post('/api/postComment',(req,res) => {        //add a new post
+        let author 
+        req.user
+            ? author = req.user._id.toString()
+            : author = 'Anonymous'
+        const commentObj = new Comment({
+            author    : author,
+            content   : req.body.content,
+            replyTo   : req.body.replyTo,
+            date      : new Date()
+        })
+        commentObj.save((err)=>{
+            if(err){
+                res.send('Unable to publish post!');
+            }
+            else
+                res.send('Post published successfully!');
+        })
+      });
+    
+
+
+
+      
+    /*******************************************
+    ********************************************
+     * Get Comments
+    ********************************************
+    *******************************************/
+      app.get('/api/comments/:id',(req,res)=>{
+        Comment.find({replyTo : req.params.id},{},(err,doc)=>{
+            if(doc)
+                res.json(doc);
+            else {
+                res.status(404).send('Ops! Details not found');
+            }
+        })
+      });   
+    
+    /*******************************************
+    ********************************************
+     * Update Comment
+    ********************************************
+    *******************************************/
+      app.post('/api/updatepost/:postid',(req,res)=>{          //update a post data
+        console.log('updatepost ',req.params.postid)
+        console.log('updatepost ',req.body)
+        Comment.findOneAndUpdate({
+            _id : req.params.postid
+        },{
+            $set:{
+                title   : req.body.title,
+                content : req.body.content,
+                updated : new Date()
+            }},
+            (err,doc)=>{
+                if(doc)
+                    res.send('Post updated successfully!');
+                else {
+                    res.status(404).send('Ops!'+err);
+                }
+        })
+      });
+    
+    /*******************************************
+    ********************************************
+     * Delete Blog Post
+    ********************************************
+    *******************************************/
+      app.post('/api/deletecomment/',(req,res)=>{
+        console.log('delete req.body', req.body)
+        Comment.findOneAndRemove({
+            _id : req.body.id,
+            replyTo : req.body.replyTo
+        },{},(err,doc)=>{
+            if(doc)
+                res.send('Post deleted successfully!');
+            else {
+                res.status(404).send('Ops! Post not found');
+            }
+        })
+      });
+
 }
+

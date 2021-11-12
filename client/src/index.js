@@ -7,6 +7,7 @@ import { Provider }       from 'react-redux'
 import thunk              from 'redux-thunk';
 import authReducer        from './store/reducers/auth';
 import blogReducer        from './store/reducers/blog';
+import commentsReducer    from './store/reducers/comments';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import './index.scss';
 
@@ -14,7 +15,8 @@ const composeEnhancers = process.env.NODE_ENV !== 'production' ? window.__REDUX_
 
  const rootReducer = combineReducers({
    auth: authReducer,
-   blog: blogReducer
+   blog: blogReducer,
+   comments: commentsReducer
 })
 
 const store = createStore(

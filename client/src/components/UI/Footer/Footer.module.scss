@@ -63,6 +63,10 @@ li{list-style: none;}
     width: 1em;
 }
 
+.NavLinks {
+    display: flex;
+    flex-direction: column;
+}
 
 @media only screen and (min-width: 600px) {
     .Footer {

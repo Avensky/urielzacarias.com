@@ -261,3 +261,30 @@ export const FETCH_POSTS_BY_MONTH_START = 'FETCH_POSTS_BY_MONTH_START'
 export const FETCH_POSTS_BY_MONTH_SUCCESS = 'FETCH_POSTS_BY_MONTH_SUCCESS'
 export const FETCH_POSTS_BY_MONTH_FAIL = 'FETCH_POSTS_BY_MONTH_FAIL'
 export const FETCH_POSTS_BY_MONTH = 'FETCH_POSTS_BY_MONTH'
+
+
+/*******************************************
+********************************************
+ * Comments
+********************************************
+*******************************************/
+
+export const POST_COMMENT_START        = 'POST_COMMENT_START'
+export const POST_COMMENT_SUCCESS      = 'POST_COMMENT_SUCCESS'
+export const POST_COMMENT_FAIL         = 'POST_COMMENT_FAIL'
+export const POST_COMMENT              = 'POST_COMMENT'
+
+export const DELETE_COMMENT_START      = 'DELETE_COMMENT_START'
+export const DELETE_COMMENT_SUCCESS    = 'DELETE_COMMENT_SUCCESS'
+export const DELETE_COMMENT_FAIL       = 'DELETE_COMMENT_FAIL'
+export const DELETE_COMMENT            = 'DELETE_COMMENT'
+
+export const UPDATE_COMMENT_START      = 'UPDATE_COMMENT_START'
+export const UPDATE_COMMENT_SUCCESS    = 'UPDATE_COMMENT_SUCCESS'
+export const UPDATE_COMMENT_FAIL       = 'UPDATE_COMMENT_FAIL'
+export const UPDATE_COMMENT            = 'UPDATE_COMMENT'
+
+export const GET_COMMENTS_START         = 'GET_COMMENTS_START'
+export const GET_COMMENTS_SUCCESS       = 'GET_COMMENTS_SUCCESS'
+export const GET_COMMENTS_FAIL          = 'GET_COMMENTS_FAIL'
+export const GET_COMMENTS               = 'GET_COMMENTS'

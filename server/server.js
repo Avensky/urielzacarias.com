@@ -13,7 +13,7 @@ const LOCAL                 = "127.0.0.1";
 const bodyParser          = require('body-parser')
 // const compression         = require('compression');
 // const cookieParser        = require('cookie-parser');
-//const cors                = require("cors");
+const cors                = require("cors");
 const session             = require('cookie-session')
 const passport            = require('passport')
 const mongoose            = require('mongoose')
@@ -79,6 +79,7 @@ if (process.env.NODE_ENV !== 'production') {
 //==============================================================================
 require('./models/users');
 require('./models/blog');
+require('./models/comment');
 // require('./models/orders');
 // require('./models/shop');
 require('./config/passport')(passport); // pass passport for configuration
@@ -92,8 +93,8 @@ mongoose.connect(keys.mongoURI, {
 module.exports = {mongoose}
 
 // set up cors to allow us to accept requests from our client
-//app.use(cors());
-//app.options('*', cors());
+app.use(cors());
+app.options('*', cors());
 
 
 // Set security HTTP headers

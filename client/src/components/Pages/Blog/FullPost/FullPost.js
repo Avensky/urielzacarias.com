@@ -13,57 +13,43 @@ const FullPost = props => {
     const history = useHistory()
     const { posts, post } = props
 
-    const fetchData = async () => { props.onFetchPosts() }
+    const fetchData     = async ()   => { props.onFetchPosts() }
+    const loadComments  = async (id) => { props.getComments(id) }
+    const loadPost      = async (id) => { props.getPost(id) }
+    const loadData      = async (id) => {
+        //on clicked post load data
+        history.push('/blog/fullpost/'+id)
+        loadPost(id)
+        loadComments(id)
+    }
+
+    // load blog data
     useEffect(() => {  if (!posts){ fetchData() } },[posts])
 
-    const loadComments = async (id) => { props.getComments(id) }
-    const loadData = async (id) => { 
-        history.push('/blog/fullpost/'+id)
-        props.getPost(id)
-
-    }
+    // load post data
     useEffect(() => { 
-        // On Initial Load
-
-        // if !post load one
+        // if no post load one
         if (!props.post){ 
             loadData(props.match.params.blogId) 
-            if (!props.comments){ 
-                loadComments(props.match.params.blogId)
-            } 
         } 
 
-        // if post is loaded check if comments reply to id matches the blog id
         if (props.post){
-            // only check if comments are loaded
-            if(props.comments){
-                if (props.comments.replyTo !== props.match.params.blogId){
-                    loadComments(props.match.params.blogId)
-                }
+            // check it loaded post matches params
+            if (props.post._id !== props.match.params.blogId){
+                loadData(props.match.params.blogId)
             }
         }
     },[])
 
+    // load comment data
     useEffect(() => { 
         // On new items being loaded check if comments match the blog id
         if (props.post){
-            if(props.comments != null){
-                if (props.comments.replyTo !== props.match.params.blogId){
-                    loadComments(props.match.params.blogId)
-                }
+            if (!props.comments){
+                loadComments(props.match.params.blogId) 
             }
         }
-    },[props.post])
-
-    useEffect(() => { 
-        //On new items being loaded check if comments match the blog id
-        if (props.post){
-        if (!props.comments){
-            loadComments(props.match.params.blogId) 
-        }
-    }
-
-    },[props.commentsMessage])
+    },[props.comments])
 
     let commentMessages;
     props.commentsMessage && (props.commentsError !== null)

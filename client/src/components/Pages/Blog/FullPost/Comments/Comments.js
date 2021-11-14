@@ -3,7 +3,6 @@ import classes from './Comments.module.scss'
 const Comments = (props) => {
     let commentCounter
     let count = props.comments.length
-    console.log('props.comments', count )
 
     if (count > 1){ commentCounter = <p className={classes.Counter}>({count}) Comments:</p>
     } else if (count === 1){commentCounter = <p className={classes.Counter}>(1) Comment:</p>

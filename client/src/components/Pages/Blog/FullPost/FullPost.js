@@ -1,42 +1,25 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import {connect} from 'react-redux'
-import Archives from '../Archives/Archives';
 import * as actions from '../../../../store/actions/index'
 import Post from '../Posts/Post/Post';
 import classes from './FullPost.module.scss';
 import Spinner from '../../../../components/UI/Spinner/Spinner'
-import { Link, useHistory } from 'react-router-dom';
 import AddComment from './AddComment/AddComment';
 import Comments from './Comments/Comments';
 
 const FullPost = props => {
-    const history = useHistory()
-    const { posts, post } = props
-
-    const fetchData     = async ()   => { props.onFetchPosts() }
-    const loadComments  = async (id) => { props.getComments(id) }
-    const loadPost      = async (id) => { props.getPost(id) }
-    const loadData      = async (id) => {
-        //on clicked post load data
-        history.push('/blog/fullpost/'+id)
-        loadPost(id)
-        loadComments(id)
-    }
-
-    // load blog data
-    useEffect(() => {  if (!posts){ fetchData() } },[posts])
-
+    const { post } = props
     // load post data
     useEffect(() => { 
         // if no post load one
         if (!props.post){ 
-            loadData(props.match.params.blogId) 
+            props.loadData(props.match.params.blogId) 
         } 
 
         if (props.post){
             // check it loaded post matches params
             if (props.post._id !== props.match.params.blogId){
-                loadData(props.match.params.blogId)
+                props.loadData(props.match.params.blogId)
             }
         }
     },[])
@@ -46,7 +29,7 @@ const FullPost = props => {
         // On new items being loaded check if comments match the blog id
         if (props.post){
             if (!props.comments){
-                loadComments(props.match.params.blogId) 
+                props.loadComments(props.match.params.blogId) 
             }
         }
     },[props.comments])
@@ -106,6 +89,7 @@ const FullPost = props => {
                     edit={edit}
                     delete={deletePostHandler}
                     comments={props.comments || []}
+                    loadData  = {props.loadData}
                 /> 
                 {comments}
                 {commentMessages}
@@ -118,33 +102,16 @@ const FullPost = props => {
         )
     }
 
-    let archives
-    if (posts) {archives = <Archives 
-        posts={props.posts} 
-        clicked={loadData}
-    />}
-
     let messages;
     props.message && (props.error !== null)
         ? messages = <div className={classes.ErrorMessage}>{props.message}</div>
         : messages = <div className={classes.ErrorMessage} />
 
-    return( 
-        <div className={['page-wrapper', classes.BlogLayout].join(' ')}>
-            <div className={classes.Blog}>
-                <section className={classes.Content}>
-                    <Link to={'/blog/'}><h1>Blog Home</h1></Link>
-                    {postById}
-                    {messages}
-                    {commentMessages}
-                    
-                </section>
-                <section className={classes.Archives}>
-                    {archives}
-                </section>
-            </div>
-        </div>
-    )
+    return( <div className={classes.FullPost}>
+                {postById}
+                {messages}
+                {commentMessages}
+            </div>)
 }
 
 const mapStateToProps = state => {
@@ -163,7 +130,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts    : ()            => dispatch( actions.fetchPosts()),
         getPost         : (id)          => dispatch( actions.fetchPostsById(id)),
         deletePost      : (id)          => dispatch( actions.deletePost(id)),
         postComment     : (id)          => dispatch( actions.postComment(id)),

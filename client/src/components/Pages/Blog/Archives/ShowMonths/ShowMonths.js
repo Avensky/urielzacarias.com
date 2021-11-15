@@ -33,11 +33,12 @@ const ShowMonths = (props)=>{
                 return (postMonth === month)
             })			
             return  <ShowTitles 
-                    month = {month}
-                    monthName = {m[month]}
-                    posts = {monthData}
-                    clicked = {props.clicked}
-                />
+                        key = {month}
+                        month = {month}
+                        monthName = {m[month]}
+                        posts = {monthData}
+                        loadData = {props.loadData}
+                    />
         })
         : showMonths = null
 

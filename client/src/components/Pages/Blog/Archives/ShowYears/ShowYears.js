@@ -20,14 +20,12 @@ const ShowYears = (props)=>{
             return (postYear === year)
         })
 
-        return  <ul>
-                    <ShowMonths 
-                        year    = {year}
-                        posts   = {yearData}
-                        clicked = {props.clicked}
-                    />  
-                </ul>	
-            
+        return  <ShowMonths 
+                    key      = {year}
+                    year     = {year}
+                    posts    = {yearData}
+                    loadData = {props.loadData}
+                />
     })
     return showYears
 }

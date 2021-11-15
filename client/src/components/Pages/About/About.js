@@ -36,7 +36,7 @@ const About = () => {
         <div className={['page-wrapper', classes.AboutLayout].join(' ')}>
             <div className={classes.About}>
                 <figure className={classes.figure}>
-                    <img src={user} alt='user image' />
+                    <img src={user} alt='user' />
                 </figure>
                 <h1>Hello World, I'm Uriel Zacarias.</h1>
                 <div className={classes.bio}>

@@ -1,61 +1,47 @@
-import React, { useEffect } from 'react';
-import Spinner from '../../../components/UI/Spinner/Spinner';
+import React, { useEffect, Suspense } from 'react';
+import { Route, Switch, Link, NavLink } from 'react-router-dom';
+//import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './Blog.module.scss';
 import Archives from './Archives/Archives';
-import Post from './Posts/Post/Post';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Posts from './Posts/Posts';
+import FullPost from './FullPost/FullPost';
+import EditPost from './EditPost/EditPost';
+import AddPost from './AddPost/AddPost';
 
-const Blog =(props)=> {
+
+const Blog = (props) => {
     const { posts } = props
     const history = useHistory()
-    const fetchData = async () => { props.onFetchPosts() }
-    useEffect(() => { if (!posts){fetchData()}},[posts])
-
-
-    const loadData = async (paramId) => { 
-        console.log('blog getPost', paramId)
-        history.push('/blog/fullpost/'+paramId)
-        //props.getPost(paramId)
+    const fetchData     = async ()   => { props.onFetchPosts() }
+    const loadComments  = async (id) => { props.getComments(id) }
+    const loadPost      = async (id) => { props.getPost(id) }
+    const loadData      = async (id) => {
+        //on clicked post load data
+        history.push('/blog/fullpost/'+id)
+        loadPost(id)
+        loadComments(id)
     }
 
-    let blog = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-    if (props.loading) { blog = <Spinner /> }
-    if (posts) {
-        blog = props.posts.map( post => {
-            const d = new Date(post.date);
-            const months = [ "January", "February", "March", "April", "May", "June", 
-                "July", "August", "September", "October", "November", "December" ];
-            const month = (d.getMonth()+1);
-            const selectedMonth = months[month]
-            const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ]
-            const day = d.getDay()
-            const selectedDay = days[day]
-            const date = selectedDay + ', ' + selectedMonth  + " " + (d.getDate()) + ", " + d.getFullYear();
-            const time = d.toLocaleTimeString('en-US')
-            return (
-                <div key={post._id} className={classes.Posts}>
-                    <Post
-                        id       = {post._id}
-                        author   = {post.author}
-                        content  = {post.content}
-                        date     = {date}
-                        lines    = {4}
-                        title    = {post.title} 
-                        time     = {time}
-                        blog     = {true}
-                        //clicked  = {loadData}
-                        //comments = {props.comments || []}
-                    />
-                </div>
-            )
-        })
-    }
+
+    // load blog data
+    useEffect(() => {  if (!posts){ fetchData() } },[posts])
+
+    let routes = (
+        <Switch>
+          <Route path="/blog/posts"            render={ props => <Posts    loadData = {loadData} {...props} />} />
+          <Route path="/blog/fullpost/:blogId" render={ props => <FullPost 
+                loadData = {loadData} loadComments={loadComments} {...props} />} />
+          <Route path="/blog/editpost/:blogId" render={ props => <EditPost {...props} />} />
+          <Route path="/blog/addPost"          render={ props => <AddPost  {...props} />} />    
+        </Switch>)
+
     let archives
     if (posts) {archives = (<Archives 
         posts={props.posts}
-        clicked={loadData}
+        loadData={loadData}
     />)}
 
     return (
@@ -63,11 +49,10 @@ const Blog =(props)=> {
             <div className={classes.Blog}>
                 <section className={classes.Content}>
                     <div className='spread'>
-                        <Link to={'/blog/'} ><h1>Blog Home</h1></Link><NavLink to='/blog/addPost' className={classes.addPost}>+</NavLink>
+                        <Link to={'/blog/posts'} ><h1>Blog Home</h1></Link>
+                        <NavLink to='/blog/addPost' className={classes.addPost}>+</NavLink>
                     </div>
-                    {//featuredPost
-                    }
-                    {blog}
+                    <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
                 </section>
                 <section className={classes.Archives}>
                     {archives}
@@ -88,6 +73,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchPosts:  () => dispatch( actions.fetchPosts()),
         getPost:  (id) => dispatch( actions.fetchPostsById(id)),
+        getComments     : (id)          => dispatch( actions.getComments(id)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (Blog);

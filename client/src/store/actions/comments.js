@@ -30,7 +30,7 @@ export const getComments = (id) => {
         axios.get( '/api/comments/' + id)
         .then( result => {
             const data = result.data
-            console.log('getComments ', data)
+            //console.log('getComments ', data)
                 dispatch(getCommentsSuccess(data));
             } )
             .catch( error => {
@@ -92,7 +92,7 @@ export const deleteCommentFail = (error) => {
     }
 }
 export const deleteCommentStart = () => {
-    console.log("delete Comment start")
+    //console.log("delete Comment start")
     return {
         type:  actionTypes.DELETE_COMMENT_START
     }
@@ -104,7 +104,7 @@ export const deleteComment = (replyTo, id) => {
 
     //JSON.stringify(values)
     
-    console.log("delete Comment", values)
+    //console.log("delete Comment", values)
     return dispatch => {
         dispatch(deleteCommentStart());
         axios.post('/api/deletecomment/', values)

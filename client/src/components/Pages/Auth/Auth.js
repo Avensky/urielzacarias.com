@@ -20,7 +20,7 @@ const Auth = props => {
     const togglePasswordVisiblity = () => {setPasswordShown(passwordShown ? false : true)}
 
     useEffect(() => {
-        console.log('ping')
+        //console.log('ping')
         if (props.match.params.token){ setAuth('reset-password')
         } else {setAuth('login')}
     },[props.match.params])

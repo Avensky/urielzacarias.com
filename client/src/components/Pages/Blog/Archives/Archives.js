@@ -7,7 +7,7 @@ const Archives  =(props)=> {
 	let showAuthor =  props.posts.map(post => {return post.author})
 	showAuthor = removeDuplicatesHandler(showAuthor)
 	let archives = <p style={{textAlign: 'center'}}>Something went wrong!</p> 
-	if (!props.error) {archives =<ShowYears posts= {props.posts} clicked={props.clicked}/>}
+	if (!props.error) {archives =<ShowYears posts= {props.posts} loadData={props.loadData}/>}
 	return (
 		<div className="Archives">
 			<p className="ArchiveTitle">Contributors: {showAuthor}</p>

@@ -14,8 +14,8 @@ const navItems = ( props ) => (
         <ul className={classes.NavItems}>
             <NavItem link="/home" myClass="LogoName" exact>Uriel Zacarias</NavItem>
             <NavItem link="/projects"                exact>Projects</NavItem>
-            <NavItem link="/about"                    exact>About</NavItem>
-            <NavItem link="/blog"                    exact>Blog</NavItem>
+            <NavItem link="/about"                   exact>About</NavItem>
+            <NavItem link="/blog/posts"              exact>Blog</NavItem>
             {props.isAuthenticated != null ? <NavItem link="/profile"          >Profile</NavItem> : null}
             {props.isAuthenticated != null ? <NavItem link="/orders"          >Orders</NavItem> : null}
 

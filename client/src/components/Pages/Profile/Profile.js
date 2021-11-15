@@ -8,7 +8,7 @@ import * as actions from '../../../store/actions/index';
 const Profile = (props) =>{
     // let address;
     let local, facebook, twitter, google = '';
-    const user = props.payload
+    //const user = props.payload
     //const history = useHistory()
     //const editAddressHandler = () => {history.push('/contactData')}
 

@@ -14,10 +14,10 @@ const Footer = (props) => {
                     <div className={classes.connect}>
                         <h3 className="white-text">Categories</h3>
                         <ul className={classes.NavLinks}>
-                            <NavLink to="/home" myClass="LogoName" exact>Home</NavLink>
+                            <NavLink to="/home" className="LogoName" exact>Home</NavLink>
                             <NavLink to="/projects"                exact>Projects</NavLink>
                             <NavLink to="/about"                   exact>About</NavLink>
-                            <NavLink to="/blog"                    exact>Blog</NavLink>
+                            <NavLink to="/blog/posts"                    exact>Blog</NavLink>
                             {props.isAuthenticated != null ? <NavLink to="/profile"          >Profile</NavLink> : null}
                             {props.isAuthenticated != null ? <NavLink to="/orders"          >Orders</NavLink> : null}
 

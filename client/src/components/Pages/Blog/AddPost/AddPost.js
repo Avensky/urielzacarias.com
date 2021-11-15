@@ -1,31 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import classes from './AddPost.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/index';
 import Spinner from '../../../UI/Spinner/Spinner'
-import { Link, useHistory } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
-import Archives from '../Archives/Archives';
 
 const NewItem = ( props ) => {
-    const [message, setMessage] = useState(null)
-    const fetchData = async () => { props.onFetchPosts() }
-    useEffect(() => { if (!props.posts){fetchData()}},[props.posts])
-
-    const history = useHistory()
-    const loadData = async (paramId) => { 
-        console.log('blog getPost')
-        history.push('/blog/fullpost/'+paramId)
-        //props.getPost(paramId)
-    }
-    useEffect(() => { 
-        if (!props.posts){
-            console.log('if !props.posts then message')
-            setMessage(props.message)
-        } 
-    },[props.posts])
-
 
     const submitHandler = ( values, submitProps ) => {
         props.onAddPost( values)
@@ -73,58 +54,40 @@ const NewItem = ( props ) => {
             <div className={classes.ErrorMessage}><ErrorMessage name="content" component="div" /></div>
     </div>
 
-    message
-        ? <div className={classes.Message}>{props.message}</div>
-        : <div className={classes.Message} />
-    
+let messages;
+props.message && (props.error !== null)
+    ? messages = <div className={classes.ErrorMessage}>{props.message}</div>
+    : messages = <div className={classes.ErrorMessage} />
 
-    let redirect = null;
-    //redirect = <Redirect to={props.redirectPath} /> 
-    
-    let archives
-    if (props.posts) {archives = (<Archives 
-        posts={props.posts}
-        clicked={loadData}
-    />)}
 
-    return (
-        <div className={['page-wrapper', classes.AddPostWrapper].join(' ')}>
-            <div className={classes.AddPost}>
-                <section className={classes.Content}>
-                    <div className='spread'><Link to={'/blog/'}><h1>Blog Home</h1></Link></div>
-                    {redirect}
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={submitHandler}
-                        enableReinitialize> 
-                        { formik => 
-                        <Form>
-                            {message}
-                            {form}
-                            <button  
-                                className={['btn', classes.Btn].join(' ')}
-                                type='submit'
-                                disabled={!formik.isValid || formik.isSubmitting }
-                            >
-                                <p className={classes.BtnDiv}><b>Publish</b></p>
-                            </button>
-                        </Form>}
-                    </Formik>
-                </section>
-                <section className={classes.Archives}>
-                    {archives}
-                </section>
-            </div>
-        </div>     
-    );
+
+    return  (<div className={classes.AddPost}>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={submitHandler}
+                    enableReinitialize> 
+                    { formik => 
+                    <Form>
+                        {messages}
+                        {form}
+                        <button  
+                            className={['btn', classes.Btn].join(' ')}
+                            type='submit'
+                            disabled={!formik.isValid || formik.isSubmitting }
+                        >
+                            <p className={classes.BtnDiv}><b>Publish</b></p>
+                        </button>
+                    </Form>}
+                </Formik>
+            </div>);
 }
 
 
 const mapStateToProps = state => {
     return {
         post                : state.blog.fetchedPostsById,
-        posts                : state.blog.posts,
+        posts               : state.blog.posts,
         message             : state.blog.message,
         loading             : state.blog.loading
     }

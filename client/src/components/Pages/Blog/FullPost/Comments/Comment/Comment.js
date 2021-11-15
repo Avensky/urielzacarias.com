@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import classes from './Comment.module.scss'
 import Modal from '../../../../../UI/Modal/Modal'
-import { Link, NavLink } from 'react-router-dom';
 
 const Comment = (props) => {
     const [modal, setModal] = useState(false)
@@ -10,7 +9,7 @@ const Comment = (props) => {
 
     const [reply, setReply] = useState(false)
     const replyHandler = () => { setReply(true) }
-    const cancelreplyHandler = () => { setReply(false) }
+ //   const cancelreplyHandler = () => { setReply(false) }
 
     return<div className={classes.Comment}>
         <div className={classes.AuthorWrapper}>

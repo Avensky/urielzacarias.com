@@ -8,10 +8,10 @@ const Post = (props) => {
     const [modal, setModal] = useState(false)
     const modalHandler = () => { setModal(true) }
     const cancelHandler = () => { setModal(false) }
-    return(<article className={[classes.Post,classes.Card,props.clName].join(' ')} onClick={props.clicked}>
+    return(<article className={[classes.Post,classes.Card,props.clName].join(' ')} >
         {props.date     ? <div className={classes.CardDate}><p>{props.date}</p></div>           : null}
         {props.title    
-            ? <div className={classes.Title}>
+            ? <div className={classes.Title} onClick={()=>props.loadData(props.id)} >
                 <NavLink 
                     to={'/blog/fullpost/' + props.id}
                     className={classes.Title}

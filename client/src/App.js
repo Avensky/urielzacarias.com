@@ -8,9 +8,6 @@ import Wrapper      from './components/Wrapper/Wrapper';
 import Projects     from './components/Pages/Projects/Projects'
 import Profile      from './components/Pages/Profile/Profile'
 import Blog         from './components/Pages/Blog/Blog'
-import AddPost      from './components/Pages/Blog/AddPost/AddPost';
-import FullPost     from './components/Pages/Blog/FullPost/FullPost'; 
-import EditPost     from './components/Pages/Blog/EditPost/EditPost';
 import About        from './components/Pages/About/About';
 import './App.scss';
 
@@ -31,10 +28,7 @@ const App = (props) => {
                        render={props => <Auth {...props} />} />
       <Route path="/home"                   component={Home} />   
       <Route path="/projects"               component={Projects} />  
-      <Route path="/blog"                   component={Blog} exact/>
-      <Route path="/blog/fullpost/:blogId"  component={FullPost} />
-      <Route path="/blog/editpost/:blogId"  component={EditPost} />
-      <Route path="/blog/addPost"           component={AddPost} />    
+      <Route path="/blog" render={props => <Blog {...props} />} />
       <Route path="/about"                  component={About} />    
       <Route path="/"                       component={Home} />
       <Redirect to="/home" /> 
@@ -49,10 +43,7 @@ const App = (props) => {
                          render={props => <Auth {...props} />} />
         <Route path="/home"                   component={Home} />
         <Route path="/projects"               component={Projects} />
-        <Route path="/blog"                   component={Blog} exact/>
-        <Route path="/blog/fullpost/:blogId"  component={FullPost} />
-        <Route path="/blog/editpost/:blogId"  component={EditPost} />   
-        <Route path="/blog/addPost"           component={AddPost} />        
+        <Route path="/blog" render={props => <Blog {...props} />} />      
         <Route path="/profile"                component={Profile} /> 
         <Route path="/about"                  component={About} />      
         <Route path="/"                       component={Home} />             

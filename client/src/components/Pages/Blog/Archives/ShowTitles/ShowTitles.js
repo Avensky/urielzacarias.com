@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import classes  from './ShowTitles.module.scss'
-import {Link}   from 'react-router-dom'
 
 const ShowTitles = (props)=>{
     // Trigger rerender using state 
@@ -9,14 +8,11 @@ const ShowTitles = (props)=>{
     // Toggle true or false
     const showToggleHandler = () => {setShow(!show)}
     
-    // Go to post
-    
-
     // Show or hide posts in a month
     let showTitles
     show
         ? showTitles = props.posts.map( post => {
-            return  <div onClick={()=>props.clicked(post._id)} className={classes.Titles}>
+            return  <div onClick={()=>props.loadData(post._id)} className={classes.Titles} key={post._id}>
                         {post.title}
                     </div>
         })

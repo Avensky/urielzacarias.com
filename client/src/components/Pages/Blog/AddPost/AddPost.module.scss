@@ -1,15 +1,10 @@
 .AddPostWrapper {padding: 2vh 0vw;}
 
 .AddPost{ 
-    display: flex;
-    flex-direction: column;
- }
-
-.Content { 
     box-sizing: border-box;
     grid-area: content; 
     background-color: rgba(0, 0, 17);
-    padding: 0vh 5vw 4vh;
+    //padding: 0vh 5vw 4vh;
 }
 
 .Archives {

@@ -9,6 +9,7 @@ import Projects     from './components/Pages/Projects/Projects'
 import Profile      from './components/Pages/Profile/Profile'
 import Blog         from './components/Pages/Blog/Blog'
 import About        from './components/Pages/About/About';
+import Privacy      from './components/Pages/Privacy/Privacy';
 import './App.scss';
 
 const App = (props) => {
@@ -30,6 +31,7 @@ const App = (props) => {
       <Route path="/projects"               component={Projects} />  
       <Route path="/blog" render={props => <Blog {...props} />} />
       <Route path="/about"                  component={About} />    
+      <Route path="/privacy"                component={Privacy}/>
       <Route path="/"                       component={Home} />
       <Redirect to="/home" /> 
     </Switch>
@@ -45,7 +47,8 @@ const App = (props) => {
         <Route path="/projects"               component={Projects} />
         <Route path="/blog" render={props => <Blog {...props} />} />      
         <Route path="/profile"                component={Profile} /> 
-        <Route path="/about"                  component={About} />      
+        <Route path="/about"                  component={About} />
+        <Route path="/privacy"      exact          component={Privacy}/>
         <Route path="/"                       component={Home} />             
         <Redirect to="/home" /> 
       </Switch>

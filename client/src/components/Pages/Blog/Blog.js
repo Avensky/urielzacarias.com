@@ -25,7 +25,6 @@ const Blog = (props) => {
         loadComments(id)
     }
 
-
     // load blog data
     useEffect(() => {  if (!posts){ fetchData() } },[posts])
 

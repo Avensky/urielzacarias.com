@@ -1,4 +1,4 @@
-import classes from './terms.module.scss'
+import classes from './Terms.module.scss'
 const Terms = () => {
     return(
         <div className={['page-wrapper', classes.Terms].join(' ')}>

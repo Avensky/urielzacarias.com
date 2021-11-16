@@ -1,0 +1,8 @@
+.TermsLayout {padding: 2vh 0vw;}
+
+@media only screen and (min-width: 600px) {
+    .TermsLayout {padding: 2vh 2vw;}
+}
+@media only screen and (min-width: 1025px) {
+    .TermsLayout {padding: 2vh 15vw;}
+}

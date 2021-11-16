@@ -53,7 +53,7 @@ const Footer = (props) => {
                     </div>
                 </div>
                 <div className={classes.Copyright}>
-                    <p>© 2021 UrielZacarias.com All Rights Reserved - <a href="/privacy">Privacy Policy</a></p>
+                    <p>© 2021 UrielZacarias.com All Rights Reserved - <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
                 </div>
             </footer>
         )

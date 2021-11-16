@@ -11,8 +11,8 @@ module.exports = {
     sengridPassword         : process.env.SENDGRID_PASSWORD,
     secretKey               : process.env.SECRET_KEY,
 
-    checkoutSuccessUrl      : "https://www.caringvegan.com/checkout",
-    checkoutCancelUrl       : "https://www.caringvegan.com/shop",
+    checkoutSuccessUrl      : "https://www.urielzacarias.com/checkout",
+    checkoutCancelUrl       : "https://www.urielzacarias.com/shop",
 
     secretKey               : process.env.SECRET_KEY,
     mongoURI                : process.env.MONGO_URI,
@@ -25,15 +25,15 @@ module.exports = {
 
     googleClientID          : process.env.GOOGLE_CLIENT_ID,
     googleClientSecret      : process.env.GOOGLE_CLIENT_SECRET,
-    googleCallbackURL       : "https://www.uriza86.com/api/google/callback/",
+    googleCallbackURL       : "https://www.urielzacarias.com/api/google/callback/",
 
     facebookClientID        : process.env.FACEBOOK_CLIENT_ID,
     facebookClientSecret    : process.env.FACEBOOK_CLIENT_SECRET,
-    facebookCallbackURL     : "https://www.uriza86.com/api/facebook/callback/",
+    facebookCallbackURL     : "https://www.urielzacarias.com/api/facebook/callback/",
 
     twitterConsumerKey      : process.env.TWITTER_CONSUMER_KEY,
     twitterConsumerSecret   : process.env.TWITTER_CONSUMER_SECRET,
-    twitterCallbackURL      : "https://www.uriza86.com/api/twitter/callback/",
+    twitterCallbackURL      : "https://www.urielzacarias.com/api/twitter/callback/",
     
     accessKeyId             : process.env.S3_ACCESS_KEY_ID,
     secretAccessKey         : process.env.S3_SECRET_ACCESS_KEY,

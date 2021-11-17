@@ -1,3 +1,4 @@
+
 const mongoose  = require('mongoose');
 const Users     = mongoose.model('Users');
 // load the auth variables
@@ -195,30 +196,56 @@ module.exports  = function(app, passport) {
             user.save(function(err) {
                 res.redirect('/profile');
             });
-        });
-    
+            var user            = req.user;
+            user.facebook       = undefined;
+            user.save(function(err) {
+//                    res.redirect('/profile')
+            });
+                  if (!user.local && !user.facebook && !user.twitter && !user.google){
+                    req.logout();
+                   // res.redirect('/authentication');
+		  }
+            });
+
         // facebook -------------------------------
+        request = require('superagent');
+	function facebookDisconnect(req, res, next) {
+          request
+            .post('https://graph.facebook.com/' + req.user.facebook.id + '/permissions')
+            .send({ 
+            'method': 'DELETE',
+            'format': 'json', 
+            'access_token': req.user.facebook.token
+            })
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .end(function() {
+                back = req.header('Referer') || '/';
+                res.redirect(back);
+            });
+        }
+
         app.get('/api/unlink/facebook', function(req, res) {
+            facebookDisconnect(req, res)
             var user            = req.user;
             user.facebook.token = undefined;
             user.save(function(err) {
                 res.redirect('/profile');
             });
         });
-    
+
         // twitter --------------------------------
         app.get('/api/unlink/twitter', function(req, res) {
             var user           = req.user;
-            user.twitter.token = undefined;
+            user.twitter       = undefined;
             user.save(function(err) {
                 res.redirect('/profile');
             });
         });
-    
+
         // google ---------------------------------
         app.get('/api/unlink/google', function(req, res) {
             var user          = req.user;
-            user.google.token = undefined;
+            user.google       = undefined;
             user.save(function(err) {
                 res.redirect('/profile');
             });

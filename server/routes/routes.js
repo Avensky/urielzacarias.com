@@ -227,7 +227,7 @@ module.exports  = function(app, passport) {
         app.get('/api/unlink/facebook', function(req, res) {
             facebookDisconnect(req, res)
             var user            = req.user;
-            user.facebook.token = undefined;
+            user.facebook       = undefined;
             user.save(function(err) {
                 res.redirect('/profile');
             });

@@ -26,8 +26,8 @@ const App = (props) => {
 
   let routes = (
     <Switch>
-      <Route path="/authentication"         component={Auth} />
-      <Route exact path="/authentication/api/v1/users/resetPassword/:token"       
+      <Route exact path="/authentication"         component={Auth} />
+      <Route exact path="/authentication/:token"       
                        render={props => <Auth {...props} />} />
       <Route path="/home"                   component={Home} />   
       <Route path="/projects"               component={Projects} />  
@@ -44,9 +44,9 @@ const App = (props) => {
   if (props.fetchedUser) {
     routes = (
       <Switch>
-        <Route path="/authentication"         component={Auth} />
-        <Route exact path="/authentication/api/v1/users/resetPassword/:token"       
-                         render={props => <Auth {...props} />} />
+        <Route exact path="/authentication"         component={Auth} />
+        <Route exact path="/authentication/:token"       
+                       render={props => <Auth {...props} />} />
         <Route path="/home"                   component={Home} />
         <Route path="/projects"               component={Projects} />
         <Route path="/blog" render={props => <Blog {...props} />} />      

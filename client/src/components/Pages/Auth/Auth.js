@@ -15,34 +15,31 @@ const Auth = props => {
     //console.log('token',token)
 
     const [passwordComfirmShown, setPasswordComfirmShown] = useState(false);    
-    const togglePasswordComfirmVisiblity = () => {setPasswordComfirmShown(passwordComfirmShown ? false : true)}
+    const togglePasswordComfirmVisiblity    = () => {setPasswordComfirmShown(passwordComfirmShown ? false : true)}
     const [passwordShown, setPasswordShown] = useState(false);
-    const togglePasswordVisiblity = () => {setPasswordShown(passwordShown ? false : true)}
-
-    useEffect(() => {
-        //console.log('ping')
-        if (props.match.params.token){ setAuth('reset-password')
-        } else {setAuth('login')}
-    },[props.match.params])
-
-    const loginToggleHandler    = () => {setAuth('login')}
-    const registerToggleHandler = () => {setAuth('register')}
-    const forgotPasswordHandler = () => {setAuth('forgot-password')}
-    //const resetPasswordHandler  = () => {setAuth('reset-password')}
-
+    const togglePasswordVisiblity           = () => {setPasswordShown(passwordShown ? false : true)}
+    const loginToggleHandler                = () => {setAuth('login')}
+    const registerToggleHandler             = () => {setAuth('register')}
+    const forgotPasswordHandler             = () => {setAuth('forgot-password')}
+    const resetPasswordHandler              = () => {setAuth('reset-password')}
     const submitHandler = ( values, submitProps ) => {
-
         props.onAuth( values, auth, token)
         submitProps.setSubmitting(false)
         submitProps.resetForm()
     } 
+    let initialValues, validationSchema, selected, unselected, form, button, authSelector, socialAuth//, loader
+
+
+    useEffect(() => {
+        if (props.match.params.token){ setAuth('reset-password')
+            console.log('reset-password')
+        } else {setAuth('login')}
+    },[props.match.params])
 
     useEffect(()=> {
         const fetchData = async () => {props.onFetchUser()}
-        if ( !props.fetchedUser){fetchData()}
-    }, [props.fetchedUser, props.authRedirectPath])
-
-    let initialValues, validationSchema, selected, unselected, form, button, authSelector, socialAuth//, loader
+          if ( !props.fetchedUser){fetchData()}
+        }, [props.fetchedUser, props.authRedirectPath])
 
     let passwordRequirements = <div>
         <h3 className='text-left'>Password requirements: </h3>
@@ -54,6 +51,7 @@ const Auth = props => {
             <li>One Number</li>    
         </ul> 
     </div>
+    // eslint-disable-next-line default-case
     switch (auth) {
         case 'login': 
             initialValues = {email: '', password: ''};
@@ -263,7 +261,19 @@ const Auth = props => {
             selected = classes.AuthToggle
             unselected = classes.AuthToggle
             authSelector = <Auxiliary>
-                <h2>Create a new password!</h2>
+                <div className={classes.AuthNav}>
+                    <button 
+                        onClick={loginToggleHandler}
+                        className={selected}
+                    ><h1 className="pointer"><span className="fa fa-sign-in pointer" /> Login</h1>
+                    </button>
+                    <button 
+                        onClick={registerToggleHandler}
+                        className={unselected}
+                    ><h1 className="pointer"><span className="fa fa-user" /> Signup</h1>
+                    </button>
+                </div>
+                <h2 className='text-left'>Create a new password!</h2>
             </Auxiliary>
             props.loading || (props.submitted && props.userLoading)
                 ? form = <Spinner />
@@ -286,8 +296,9 @@ const Auth = props => {
                         /><span className={passwordComfirmShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePasswordComfirmVisiblity} ></span>
                     </div>
                     <div className={classes.ErrorMessage}><ErrorMessage name="confirm_password" component="div" /></div>
+                    {passwordRequirements}
                 </Auxiliary>
-            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span>Reset Password</div>    
+            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span> Reset Password</div>    
             break
     }
 

@@ -128,7 +128,7 @@ export const auth = (values, auth, token) => {
                 break;
             case auth ='reset-password':
                 url = ('/api/resetPassword/'+token)
-                //console.log('url',url)
+                //console.log('resetPassword token',token)
                 break;
             default: url = '/api/login'
         }

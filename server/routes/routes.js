@@ -1,6 +1,9 @@
 
 const mongoose  = require('mongoose');
 const Users     = mongoose.model('Users');
+const AppError              = require('./../utils/appError');
+const Email                 = require('./../utils/email');
+const crypto                = require('crypto');
 // load the auth variables
 
 module.exports  = function(app, passport) {
@@ -42,7 +45,7 @@ module.exports  = function(app, passport) {
     // =====================================
     app.get('/api/logout', function(req, res) {
         req.logout();
-        res.redirect('/login');
+        res.redirect('/authentication');
     });
     
     // =============================================================================
@@ -63,6 +66,18 @@ module.exports  = function(app, passport) {
             })(req, res, next);
         })
 
+        const createSendToken = (user, statusCode, req, res) => {
+            console.log('createSendToken user',user)
+            console.log('statusCode',statusCode)
+        
+            req.logIn(user, function(err) {
+                if (err) { return res.err }
+                //return res.redirect('/profile/' + user.username);
+                //return res.send(200)
+                return res.send(200)
+            })
+        };
+        
         // =====================================
         // REGISTER ============================
         // =====================================
@@ -79,6 +94,85 @@ module.exports  = function(app, passport) {
                 })(req, res, next);
             });
 
+        // =====================================
+        // RESET PASSWORD ======================
+        // =====================================
+            app.post('/api/forgotPassword', async (req, res, next) =>  {
+                // 1) Get user based on POSTed email
+                const user = await Users.findOne({ 'local.email': req.body.email });
+                if (!user) {
+                    return next(new AppError('There is no user with email address.', 404));
+                }
+                //console.log('user', user)
+                // 2) Generate the random reset token
+                const resetToken = user.createPasswordResetToken();
+                //console.log('resetToken', resetToken)
+                await user.save({ validateBeforeSave: false });
+
+                //console.log('user token', user)
+                // 3) Send it to user's email
+                try {
+                    //const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
+                    const resetURL = `${req.protocol}://${req.get('host')}/authentication/${resetToken}`;
+                    console.log('resetURL', resetURL)
+                    console.log('user', user)
+                    const email = user.local.email
+                    await new Email(user, email, resetURL).sendPasswordReset();
+
+                    res.status(200).json({
+                        status: 'success',
+                        message: 'Password reset token sent to email! Link is valid for 10 minutes!'
+                    });
+                } catch (err) {
+                    console.log('err', err)
+                    user.local.passwordResetToken = undefined;
+                    user.local.passwordResetExpires = undefined;
+                    await user.save({ validateBeforeSave: false });
+
+                    return next(
+                        new AppError('There was an error sending the email. Try again later!'),
+                        500
+                    );
+                }
+            })
+
+            app.patch('/api/resetPassword/:token', async (req, res, next) => {
+                console.log('resetPassword start')
+                // 1) Get user based on the token
+                console.log('resetPassword start')
+                console.log('req.params.token',req.params.token)
+                const hashedToken = crypto
+                    .createHash('sha256')
+                    .update(req.params.token)
+                    .digest('hex');
+                console.log('hashedToken',hashedToken)
+                const user = await Users.findOne({ 
+                    'local.passwordResetToken': hashedToken, 
+                    'local.passwordResetExpires': { $gt: Date.now() }
+                })
+                console.log('passwordResetToken user',user)
+                // 2) If token has not expired, and there is user, set the new password
+                if (!user) {
+                    return next(new AppError('Token is invalid or has expired', 400));
+                }
+        
+                user.correctPassword(req.body.password,req.body.confirm_password)
+                console.log('req',req.body)
+                user.local.password = user.generateHash(req.body.password);
+                user.local.passwordConfirm = user.generateHash(req.body.confirm_password);
+                user.local.passwordResetToken = undefined;
+                user.local.passwordResetExpires = undefined;
+                await user.save();
+        
+                const url = `${req.protocol}://${req.get('host')}/authentication`;
+                console.log(url);
+                const email = user.local.email
+                new Email(user, email, url).sendResetComfirmation();
+        
+                // 3) Update changedPasswordAt property for the user
+                // 4) Log the user in, send JWT
+                createSendToken(user, 200, req, res);
+            })
         // =====================================
         // =====================================
         // FACEBOOK ROUTES =====================
@@ -196,32 +290,23 @@ module.exports  = function(app, passport) {
             user.save(function(err) {
                 res.redirect('/profile');
             });
-            var user            = req.user;
-            user.facebook       = undefined;
-            user.save(function(err) {
-//                    res.redirect('/profile')
-            });
-                  if (!user.local && !user.facebook && !user.twitter && !user.google){
-                    req.logout();
-                   // res.redirect('/authentication');
-		  }
-            });
+        });
 
         // facebook -------------------------------
         request = require('superagent');
-	function facebookDisconnect(req, res, next) {
-          request
-            .post('https://graph.facebook.com/' + req.user.facebook.id + '/permissions')
-            .send({ 
-            'method': 'DELETE',
-            'format': 'json', 
-            'access_token': req.user.facebook.token
-            })
-            .set('Content-Type', 'application/x-www-form-urlencoded')
-            .end(function() {
-                back = req.header('Referer') || '/';
-                res.redirect(back);
-            });
+	    function facebookDisconnect(req, res, next) {
+            request
+                .post('https://graph.facebook.com/' + req.user.facebook.id + '/permissions')
+                .send({ 
+                'method': 'DELETE',
+                'format': 'json', 
+                'access_token': req.user.facebook.token
+                })
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+                .end(function() {
+                    back = req.header('Referer') || '/';
+                    res.redirect(back);
+                });
         }
 
         app.get('/api/unlink/facebook', function(req, res) {

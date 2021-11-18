@@ -28,11 +28,19 @@
     border-bottom-style: solid;
 }
 
-.Reset h2{
-    margin-top: 0;
+.Auth h2{
+    margin: 0;
 }
 .Reset p{
     margin-bottom: 0;
+}
+
+.Auth h3 {
+    margin: .25vh 0;
+}
+
+.Auth ul{
+    margin: .75vh 0;
 }
 
 .Btn {
@@ -68,7 +76,11 @@
     background-color: black !important;
 }
 
-.Message        { min-height: 21px; }
+.Message        { 
+    min-height: 21px; 
+    margin-top: .85vh;
+    color: rgb(252, 252, 145);
+}
 .ErrorMessage   { height: 21px; }
 
 

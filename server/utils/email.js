@@ -5,10 +5,13 @@ const keys        = require('../config/keys')
 
 module.exports    = class Email {
   constructor(user, email, url) {
+    console.log('constructor user', user)
+    console.log('constructor email ', email)
+    console.log('constructor url ', url)
     this.to = email;
     //this.firstName = user.name.split(' ')[0];
     this.url = url;
-    this.from = `Team UriZa86 <${process.env.EMAIL_FROM}>`;
+    this.from = `UrielZacarias.com <${process.env.EMAIL_FROM}>`;
   }
 
   newTransport() {
@@ -23,7 +26,7 @@ module.exports    = class Email {
       });
     }
     // console.log('newTransport')
-    // console.log('EMAIL_HOST',keys.emailHost)
+    // console.log('EMAIL_HOST', keys.emailHost)
     // console.log('EMAIL_PORT',keys.emailPort)
     // console.log('EMAIL_USERNAME',keys.emailUsername)
     // console.log('EMAIL_PASSWORD',keys.emailPassword)
@@ -39,7 +42,7 @@ module.exports    = class Email {
 
   // Send the actual email
   async send(template, subject) {
-    // console.log('dirname',__dirname)
+    console.log('dirname',__dirname)
     // console.log('template',template)
     // console.log('subject',subject)
     // console.log('render',`${__dirname}/../views/email/${template}.pug`)
@@ -80,7 +83,7 @@ module.exports    = class Email {
   }
 
   async sendPasswordReset() {
-    // console.log('sendPasswordReset')
+    console.log('sendPasswordReset')
     await this.send('passwordReset','Your password reset token is only valid for 10 minutes');
   }
 };

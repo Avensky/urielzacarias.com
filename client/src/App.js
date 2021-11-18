@@ -11,6 +11,7 @@ import Blog         from './components/Pages/Blog/Blog'
 import About        from './components/Pages/About/About';
 import Privacy      from './components/Pages/Privacy/Privacy';
 import Terms        from './components/Pages/Terms/Terms';
+import Connect      from './components/Pages/Auth/Connect/Connect';
 import './App.scss';
 
 const App = (props) => {
@@ -32,6 +33,7 @@ const App = (props) => {
       <Route path="/projects"               component={Projects} />  
       <Route path="/blog" render={props => <Blog {...props} />} />
       <Route path="/about"                  component={About} />   
+      <Route path="/connectlocal"                component={Connect} />
       <Route path="/terms"                  component={Terms} /> 
       <Route path="/privacy"                component={Privacy}/>
       <Route path="/"                       component={Home} />
@@ -50,6 +52,7 @@ const App = (props) => {
         <Route path="/blog" render={props => <Blog {...props} />} />      
         <Route path="/profile"                component={Profile} /> 
         <Route path="/about"                  component={About} />
+        <Route path="/connectlocal"                component={Connect} />
         <Route path="/privacy"      exact     component={Privacy}/>
         <Route path="/terms"                  component={Terms} /> 
         <Route path="/"                       component={Home} />             

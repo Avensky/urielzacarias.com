@@ -50,7 +50,7 @@ const Profile = (props) =>{
             userLink        = {true}
             icon            = "fa-user"
             mystyle         = "auth-btn"
-            provider        = '/connect' 
+            provider        = '/connectlocal' 
             providerUnlink  = '/api/unlink/local' />)
     
     facebook = (
@@ -103,32 +103,32 @@ const Profile = (props) =>{
         />)
     }
 
-    if (props.payload['twitter'] && props.payload['twitter'].token) {
-        twitter = (
-            <Link
-                id          ={props.payload['twitter'].id}
-                link            = "Twitter"
-                userLink        = {false}
-                displayName     = {props.payload['twitter'].displayName}
-                //token       = "token"
-                username        = {props.payload['twitter'].username}
-                token           = {props.payload['twitter'].token}
-                icon            = "fa-twitter"
-                mystyle         = "btn-info"
-                provider        = '/api/connect/twitter' 
-                providerUnlink  = '/api/unlink/twitter' 
-        />)
-    } else {
-        twitter = (
-            <Link
-                link            = "Twitter"
-                userLink        = {true}
-                icon            = "fa-twitter"
-                mystyle         = "btn-info"
-                provider        = '/api/connect/twitter'
-                providerUnlink  = '/api/unlink/twitter' />
-        )
-    }
+//    if (props.payload['twitter'] && props.payload['twitter'].token) {
+//        twitter = (
+//            <Link
+//                id          ={props.payload['twitter'].id}
+//                link            = "Twitter"
+//                userLink        = {false}
+//                displayName     = {props.payload['twitter'].displayName}
+//                //token       = "token"
+//                username        = {props.payload['twitter'].username}
+//                token           = {props.payload['twitter'].token}
+//                icon            = "fa-twitter"
+//                mystyle         = "btn-info"
+//                provider        = '/api/connect/twitter' 
+//                providerUnlink  = '/api/unlink/twitter' 
+//        />)
+//    } else {
+//        twitter = (
+//            <Link
+//                link            = "Twitter"
+//                userLink        = {true}
+//                icon            = "fa-twitter"
+//                mystyle         = "btn-info"
+//                provider        = '/api/connect/twitter'
+//                providerUnlink  = '/api/unlink/twitter' />
+//        )
+//    }
 
     if (props.payload['google'] && props.payload['google'].token) {
         google = (

@@ -31,8 +31,7 @@ const Auth = props => {
     //const resetPasswordHandler  = () => {setAuth('reset-password')}
 
     const submitHandler = ( values, submitProps ) => {
-        //console.log('Form data', values)
-        //console.log('submitProps', submitProps)
+
         props.onAuth( values, auth, token)
         submitProps.setSubmitting(false)
         submitProps.resetForm()
@@ -40,18 +39,21 @@ const Auth = props => {
 
     useEffect(()=> {
         const fetchData = async () => {props.onFetchUser()}
-          if ( !props.fetchedUser){fetchData()}
-        }, [props.fetchedUser, props.authRedirectPath])
-
-    // let act = 'login';
-    // if (!auth) {
-    //     act = 'signup'
-    // }
-    // const [formValues, setFormValues] = useState(null)
+        if ( !props.fetchedUser){fetchData()}
+    }, [props.fetchedUser, props.authRedirectPath])
 
     let initialValues, validationSchema, selected, unselected, form, button, authSelector, socialAuth//, loader
 
-    // eslint-disable-next-line default-case
+    let passwordRequirements = <div>
+        <h3 className='text-left'>Password requirements: </h3>
+        <ul className='text-left'>
+            <li>Must Contain 8 Characters</li>
+            <li>One special case Character</li> 
+            <li>One Uppercase</li>    
+            <li>One Lowercase</li>    
+            <li>One Number</li>    
+        </ul> 
+    </div>
     switch (auth) {
         case 'login': 
             initialValues = {email: '', password: ''};
@@ -114,9 +116,11 @@ const Auth = props => {
                             //onClick={socialAuthHandler}
                         ><div className={classes.BtnDiv}><span className="fa fa-facebook" /> Facebook</div></a>
                     </button>
+                    {/*
                     <button className={[classes.Btn, "btn-info"].join(' ')}>
                         <a href="/api/twitter"><div className={classes.BtnDiv}><span className="fa fa-twitter" /> Twitter</div></a>
                     </button>
+                    */}
                     <button className={[classes.Btn, "btn-danger"].join(' ')}>
                         <a href="/api/google"><div className={classes.BtnDiv}><span className="fa fa-google-plus" /> Google+</div></a>
                     </button>
@@ -190,6 +194,7 @@ const Auth = props => {
                     /><span className={passwordComfirmShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePasswordComfirmVisiblity} ></span>
                 </div>
                 <div className={classes.ErrorMessage}><ErrorMessage name="confirm_password" component="div" /></div>              
+                {passwordRequirements}
             </Auxiliary>
             button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span>Sign Up</div>
             break
@@ -295,7 +300,7 @@ const Auth = props => {
     if ( props.isAuthenticated ) { authRedirect = <Redirect to={props.authRedirectPath} /> }
 
     return(
-        <div className='page-wrapper' >
+        <div className='page-wrapper'>
             <div className={classes.Auth}>
                 {authRedirect}
                 {authSelector}
@@ -308,7 +313,6 @@ const Auth = props => {
                     <Form>
                         {message}
                         {form}
-                    
                         <button  
                             className={[classes.Btn, classes.AuthBtn, 'auth-btn' ].join(' ')}
                             type='submit'

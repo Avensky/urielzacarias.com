@@ -1,7 +1,8 @@
 .Archives {
     background-color: rgba(0, 0, 17, 0.95);
     padding: 1vh 2vw 4vh;
-    overflow-wrap: break-word;
+    //overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .Archives ul {
@@ -15,4 +16,9 @@
 
 .ShowNone {
     display: none;
+}
+
+.Author {
+    padding-left:20px;
+    list-style-type: disc;
 }

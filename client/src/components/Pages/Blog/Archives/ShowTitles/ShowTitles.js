@@ -3,7 +3,7 @@ import classes  from './ShowTitles.module.scss'
 
 const ShowTitles = (props)=>{
     // Trigger rerender using state 
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(props.show)
 
     // Toggle true or false
     const showToggleHandler = () => {setShow(!show)}
@@ -13,7 +13,7 @@ const ShowTitles = (props)=>{
     show
         ? showTitles = props.posts.map( post => {
             return  <div onClick={()=>props.loadData(post._id)} className={classes.Titles} key={post._id}>
-                        {post.title}
+                        <li>{post.title}</li>
                     </div>
         })
         : showTitles = null

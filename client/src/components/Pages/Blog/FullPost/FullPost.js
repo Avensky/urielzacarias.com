@@ -49,7 +49,7 @@ const FullPost = props => {
         const d = new Date(post.date);
         const months = [ "January", "February", "March", "April", "May", "June", 
             "July", "August", "September", "October", "November", "December" ];
-        const month = (d.getMonth()+1);
+        const month = (d.getMonth());
         const selectedMonth = months[month]
         const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ]
         const day = d.getDay()

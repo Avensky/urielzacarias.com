@@ -4,7 +4,8 @@ import classes from './ShowMonths.module.scss'
 
 const ShowMonths = (props)=>{
     // Trigger rerender using state 
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(props.show)
+
     // Toggle true or false
     const showToggleHandler = () => {setShow(!show)}
 
@@ -18,7 +19,8 @@ const ShowMonths = (props)=>{
         return month
     })
     months = removeDuplicatesHandler(months)
-    months = months.sort(function(a, b){return a-b}).reverse()
+    months = months.sort((a,b)=>{return a - b})
+//    months = months.sort(function(a, b){return a-b}).reverse()
     const m = [ "January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December" ];
     //const monthName = months.map( month => {return m[month]})
@@ -32,7 +34,14 @@ const ShowMonths = (props)=>{
                 const postMonth = d.getMonth()
                 return (postMonth === month)
             })			
+            monthData = monthData.sort((a, b) => {return new Date(a.date) - new Date(b.date) })
+            let showMonth
+            month === months[months.length-1]
+                ? showMonth = true
+                : showMonth = false
+            console.log('showMonth = ',months)
             return  <ShowTitles 
+                        show = {showMonth}
                         key = {month}
                         month = {month}
                         monthName = {m[month]}

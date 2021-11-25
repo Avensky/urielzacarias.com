@@ -30,7 +30,7 @@ const Comment = (props) => {
         {props.edit
             ?   <div className={['spread', classes.Edit].join(' ')}>
                     <div className={classes.EditPost}>
-                        <button onCLick={replyHandler} className={["btn btn-edit", classes.Btn].join(' ')}>
+                        <button onClick={replyHandler} className={["btn btn-edit", classes.Btn].join(' ')}>
                             Reply
                         </button>
                     </div>

@@ -10,17 +10,22 @@ const ShowYears = (props)=>{
         return year
     })
     years = removeDuplicatesHandler(years)
-    years = years.reverse()
-    
+    years = years.sort((a,b)=>{return a-b})
     // List all posts in a Year
+
     const showYears = years.map(year => {
         const yearData = props.posts.filter( post => {
             const d = new Date(post.date);
             const postYear = d.getFullYear()
             return (postYear === year)
         })
-
+        let show
+        year === years[years.length-1]
+        ? show = true
+        : show = false
+        //console.log('show = ',show)
         return  <ShowMonths 
+                    show     = {show}
                     key      = {year}
                     year     = {year}
                     posts    = {yearData}

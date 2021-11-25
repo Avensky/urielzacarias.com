@@ -14,7 +14,7 @@ const Comments = (props) => {
             const d = new Date(comment.date);
             const months = [ "January", "February", "March", "April", "May", "June", 
                 "July", "August", "September", "October", "November", "December" ];
-            const month = (d.getMonth()+1);
+            const month = (d.getMonth());
             const selectedMonth = months[month]
             const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ]
             const day = d.getDay()
@@ -25,8 +25,8 @@ const Comments = (props) => {
             let edit = false
 
             if (props.user){
-                console.log('comment user ', comment.author)
-                console.log('user ', props.user)
+                //console.log('comment user ', comment.author)
+                //console.log('user ', props.user)
                 if  (comment.author === props.user._id) {edit = true}
             } else {
                    if (comment.author === "Anonymous") {edit = true}
@@ -36,6 +36,7 @@ const Comments = (props) => {
 
 
             return <Comment 
+                key     = {comment._id}
                 delete  = {props.delete}
                 replyTo = {comment.replyTo}
                 id      = {comment._id}

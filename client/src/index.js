@@ -4,25 +4,8 @@ import App                from './App';
 import reportWebVitals    from './reportWebVitals';
 import { BrowserRouter }  from 'react-router-dom';
 import { Provider }       from 'react-redux'
-import thunk              from 'redux-thunk';
-import authReducer        from './store/reducers/auth';
-import blogReducer        from './store/reducers/blog';
-import commentsReducer    from './store/reducers/comments';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import store              from './store/store';
 import './index.scss';
-
-const composeEnhancers = process.env.NODE_ENV !== 'production' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : (null || compose);
-
- const rootReducer = combineReducers({
-   auth: authReducer,
-   blog: blogReducer,
-   comments: commentsReducer
-})
-
-const store = createStore(
-  rootReducer, 
-  composeEnhancers(applyMiddleware(thunk))
-);
 
 //const app = <React.StrictMode><App /></React.StrictMode>
 const app = (

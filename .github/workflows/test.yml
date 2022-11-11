@@ -11,6 +11,6 @@ jobs:
         with: 
           node-version: 18
       - name: Install Server Dependencies
-        run: npm ci /server/package.json
+        run: cd server && npm ci
       - name: Run tests
         run: npm test

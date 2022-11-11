@@ -12,5 +12,7 @@ jobs:
           node-version: 16
       - name: Install Server Dependencies
         run: cd server && npm ci
+      - name: Install Client Dependencies
+        run: cd client && npm ci
       - name: Run tests
-        run: npm test
+        run: cd client && npm test

@@ -27,7 +27,7 @@ jobs:
         run: cd server && npm install ci
       - name: install dependencies
         run: cd client && npm install ci
-      -name: Test code
+      - name: Test code
         run: cd client && npm run test
 #       - name: Load & cache dependencies
 #         uses: ./.github/actions/cached-deps

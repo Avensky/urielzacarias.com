@@ -12,7 +12,6 @@ config/config.env
 INSTRUCTIONS.md
 yarn.lock
 .cert
-
 # testing
 /coverage
 devFiles

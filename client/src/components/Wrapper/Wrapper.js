@@ -1,4 +1,5 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState //, useLayoutEffect 
+} from 'react';
 import { connect } from 'react-redux';
 import classes from './Wrapper.module.scss';
 import Navbar from '../Navigation/Navbar/Navbar';
@@ -10,7 +11,7 @@ const Wrapper = props =>  {
     const [showSidebar, setShowSidebar] = useState(false)
     const sidebarToggleHandler          = () => {setShowSidebar(!showSidebar)}
     const closeSidebarHandler           = () => {setShowSidebar(false)}
-    useLayoutEffect(() => {window.scrollTo(0, 0)})
+    //useLayoutEffect(() => {window.scrollTo(0, 0)})
 
     return (    
         <div className={classes.Wrapper}>

@@ -4,11 +4,15 @@ on:
     branches:
       - main
 jobs:
-#   lint:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Get code
-#         uses: actions/checkout@v3
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: cd server && npm ci
+      - name: install dependencies
+        run: cd client && npm ci
 #       - name: Load & cache dependencies
 #         id: cache-deps
 #         uses: ./.github/actions/cached-deps
@@ -16,17 +20,18 @@ jobs:
 #           caching: 'false'
 #       - name: Output information
 #         run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
-#       - name: Lint code
-#         run: npm run lint
+      - name: Lint code
+        run: cd client && npm run lint
   test:
+  needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
       - name: install dependencies
-        run: cd server && npm install ci
+        run: cd server && npm ci
       - name: install dependencies
-        run: cd client && npm install ci
+        run: cd client && npm ci
       - name: Test code
         run: cd client && npm run test
 #       - name: Load & cache dependencies
@@ -40,16 +45,16 @@ jobs:
 #         with:
 #           name: test-report
 #           path: test.json
-#   build:
-#     needs: test
-#     runs-on: ubuntu-latest
-#     steps:
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
 #       - name: Get code
 #         uses: actions/checkout@v3
 #       - name: Load & cache dependencies
 #         uses: ./.github/actions/cached-deps
-#       - name: Build website
-#         run: npm run build
+      - name: Build website
+        run: npm run build
 #       - name: Upload artifacts
 #         uses: actions/upload-artifact@v3
 #         with:

@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
     "cypress": "^9.7.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.31.10",
     "formik": "^2.2.9",
     "http-proxy-middleware": "^2.0.1",
     "jquery": "^3.6.0",
@@ -27,6 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cypress run",
+    "lint": "eslint --ext .jsx --fix src",   
     "eject": "react-scripts eject",
     "cy:open": "cypress open",
     "cy:run": "cypress run"

@@ -23,7 +23,7 @@ jobs:
       - name: Lint code
         run: cd client && npm run lint
   test:
-  needs: lint
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code

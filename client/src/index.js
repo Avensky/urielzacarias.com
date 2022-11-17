@@ -3,7 +3,7 @@ import ReactDOM           from 'react-dom';
 import App                from './App';
 import reportWebVitals    from './reportWebVitals';
 import { BrowserRouter }  from 'react-router-dom';
-import { Provider }       from 'react-redux'
+import { Provider }       from 'react-redux';
 import store              from './store/store';
 import './index.scss';
 
@@ -14,7 +14,7 @@ const app = (
                   <App />
             </BrowserRouter>
       </Provider>
-)
+);
 
 ReactDOM.render( app, document.getElementById( 'root' ) );
 

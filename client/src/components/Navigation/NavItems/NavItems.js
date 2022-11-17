@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './NavItems.module.scss'
+import classes from './NavItems.module.scss';
 import NavItem from './NavItem/NavItem';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../UI/Logo/Logo';

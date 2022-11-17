@@ -8,7 +8,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": "latest",
+    "ecmaVersion": 6,
     "sourceType": "module"
   },
   "extends": ["plugin:react/recommended", "plugin:react/jsx-runtime"],

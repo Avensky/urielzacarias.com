@@ -12,7 +12,7 @@ const initialState = {
     error: null,
     redirect:null,
     message:null
-}
+};
 /*******************************************************************************
 ********************************************************************************
  * Get Posts
@@ -21,20 +21,20 @@ const initialState = {
 const fetchPostsStart = (state, action) => {
     return updateObject( state, {
         loading: true
-    })
-}
+    });
+};
 
 const fetchPostsFail = (state, action) => {
     return updateObject( state, {
         loading: false
-    })
-}
+    });
+};
 const fetchPostsSuccess = (state, action) => {
     return updateObject( state, {
         posts: action.posts,
         loading: false,
-    })
-}
+    });
+};
 
 
 
@@ -48,22 +48,22 @@ const fetchPostsByIdStart = (state, action) => {
         //fetchedPostsById: null,
         error: null,
         loading: true,
-    })
-}
+    });
+};
 
 const fetchPostsByIdFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false
-    })
-}
+    });
+};
 const fetchPostsByIdSuccess = (state, action) => {
     return updateObject( state, {
         fetchedPostsById: action.fetchedPostsById,
         loading: false,
         error: null,
-    })
-}
+    });
+};
 /*******************************************************************************
 ********************************************************************************
  * Delete Post
@@ -73,23 +73,23 @@ const deletePostStart = (state, action) => {
     return updateObject( state, {
         loading: true,
         message: null
-    })
-}
+    });
+};
 
 const deletePostFail = (state, action) => {
     return updateObject( state, {
         loading: false,
         message: action.error
-    })
-}
+    });
+};
 const deletePostSuccess = (state, action) => {
     return updateObject( state, {
         loading: false,
         message: action.message,
         fetchedPostsById: null,
         posts:null
-    })
-}
+    });
+};
 
 /*******************************************************************************
 ********************************************************************************
@@ -100,20 +100,20 @@ const deletePostSuccess = (state, action) => {
 const fetchPostsByYearStart = (state, action) => {
     return updateObject( state, {
         loading: true
-    })
-}
+    });
+};
 
 const fetchPostsByYearFail = (state, action) => {
     return updateObject( state, {
         loading: false
-    })
-}
+    });
+};
 const fetchPostsByYearSuccess = (state, action) => {
     return updateObject( state, {
         fetchedPostsByYear: action.fetchedPostsByYear,
         loading: false,
-    })
-}
+    });
+};
 
 /*******************************************************************************
 ********************************************************************************
@@ -123,20 +123,20 @@ const fetchPostsByYearSuccess = (state, action) => {
 const fetchPostsByMonthStart = (state, action) => {
     return updateObject( state, {
         loading: true
-    })
-}
+    });
+};
 
 const fetchPostsByMonthFail = (state, action) => {
     return updateObject( state, {
         loading: false
-    })
-}
+    });
+};
 const fetchPostsByMonthSuccess = (state, action) => {
     return updateObject( state, {
         fetchedPostsByMonth: action.fetchedPostsByMonth,
         loading: false,
-    })
-}
+    });
+};
 
 /*******************************************************************************
 ********************************************************************************
@@ -148,23 +148,23 @@ const newPostStart = (state, action) => {
     return updateObject( state, { 
         loading: true,
         message: null
-    })
-}
+    });
+};
     
 const newPostSuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         message: action.message,
         posts:null
-    })
-}
+    });
+};
 
 const newPostFail = (state, action) => {
     return updateObject( state, { 
         loading: false,
         message: action.error
-    })
-}
+    });
+};
 /*******************************************************************************
 ********************************************************************************
  * Update Post
@@ -176,8 +176,8 @@ const updatePostStart = (state, action) => {
         loading: true,
         message: null
 //        redirect:null
-    })
-}
+    });
+};
     
 const updatePostSuccess = (state, action) => {
 //    const newPost = updateObject(action.postData, { id: action.postId })
@@ -188,15 +188,15 @@ const updatePostSuccess = (state, action) => {
         posts:null
 //        redirect: '/blog/editpost/' + action.id
 //        posts: state.posts.concat( newPost )
-    })
-}
+    });
+};
 
 const updatePostFail = (state, action) => {
     return updateObject( state, { 
         loading: false,
         message: action.error
-    })
-}
+    });
+};
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -231,6 +231,6 @@ const reducer = (state = initialState, action) => {
 
         default: return state;     
     }
-}
+};
 
 export default reducer;

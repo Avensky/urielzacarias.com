@@ -1,4 +1,4 @@
-import classes from './Privacy.module.scss'
+import classes from './Privacy.module.scss';
 const Privacy = () => {
     
     return (<div className={['page-wrapper', classes.PrivacyLayout].join(' ')}>
@@ -17,11 +17,11 @@ const Privacy = () => {
         </p>
         <p>In this privacy notice, if we refer to:
             <ul>
-                <li><b>"Website"</b> we are referring to any website of our that references or links to this policy</li>
-                <li><b>"Services"</b> we are referring to our Website, and other related services, including nay sales, marketing, or events</li>
+                <li><b>&quot;Website&quot;</b> we are referring to any website of our that references or links to this policy</li>
+                <li><b>&quot;Services&quot;</b> we are referring to our Website, and other related services, including nay sales, marketing, or events</li>
             </ul>
         </p>
     </div>
-    )
-}
-export default Privacy
+    );
+};
+export default Privacy;

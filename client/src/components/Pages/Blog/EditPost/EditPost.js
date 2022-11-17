@@ -1,50 +1,51 @@
 import React, { useState, useEffect} from 'react';
-import classes from './EditPost.module.scss'
+import classes from './EditPost.module.scss';
 import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/index';
-import Spinner from '../../../UI/Spinner/Spinner'
+import Spinner from '../../../UI/Spinner/Spinner';
 import Archives from '../Archives/Archives';
 import { Link, useHistory } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup'
-import Modal from '../../../UI/Modal/Modal'
+import * as Yup from 'yup';
+import Modal from '../../../UI/Modal/Modal';
+import PropTypes from 'prop-types';
 
 const EditPost = ( props ) => {
-    const [modal, setModal] = useState(false)
-    const modalHandler = () => { setModal(true) }
-    const cancelHandler = () => { setModal(false) }
+    const [modal, setModal] = useState(false);
+    const modalHandler = () => { setModal(true); };
+    const cancelHandler = () => { setModal(false); };
     
-    const [message, setMessage] = useState(null)
-    const history = useHistory()
+    const [message, setMessage] = useState(null);
+    const history = useHistory();
 
-    const fetchData = async () => { props.onFetchPosts() }
-    useEffect(() => { if (!props.posts){fetchData()}},[props.posts])
+    const fetchData = async () => { props.onFetchPosts(); };
+    useEffect(() => { if (!props.posts){fetchData();};},[props.posts]);
 
     const loadData = async (paramId) => { 
-        console.log('loadData = ', paramId)
-        history.push('/blog/editpost/'+paramId)
-        props.getPost(paramId)
-    }
+        console.log('loadData = ', paramId);
+        history.push('/blog/editpost/'+paramId);
+        props.getPost(paramId);
+    };
 
     useEffect(() => { 
         // check if item is set with post data
         if (!props.post){
-            console.log('if !props.post then loadData')
-            loadData(props.match.params.blogId)
-            setModal(false)
-            setMessage(props.message)
-        } 
-    },[props.post])
+            console.log('if !props.post then loadData');
+            loadData(props.match.params.blogId);
+            setModal(false);
+            setMessage(props.message);
+        };
+    },[props.post]);
 
     const submitHandler = ( values, submitProps ) => {
-        props.updatePost( values, props.match.params.blogId)
-        submitProps.setSubmitting(false)
-        submitProps.resetForm()
-    } 
-    let initialValues
+        props.updatePost( values, props.match.params.blogId);
+        submitProps.setSubmitting(false);
+        submitProps.resetForm();
+    };
+    let initialValues;
     props.post
         ? initialValues = {title: props.post.title, content: props.post.content}
-        : initialValues = {title: '', content: ''}
+        : initialValues = {title: '', content: ''};
 
     let validationSchema = Yup.object({
         title: Yup.string()
@@ -53,17 +54,9 @@ const EditPost = ( props ) => {
             .required("Required!")
     });
 
-    let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+    let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
 
-
-
-
-
-
-
-
-
-    if (props.loading) {form = <Spinner />}
+    if (props.loading) {form = <Spinner />;};
     if (props.post) {form = formik => 
         <Form>
             <div className={classes.MidLine}>
@@ -114,20 +107,20 @@ const EditPost = ( props ) => {
                     Update
                 </div>
             </div>
-        </Form>}
+        </Form>;};
 
     message
         ? <div className={classes.ErrorMessage}>{props.message}</div>
-        : <div className={classes.ErrorMessage} />
+        : <div className={classes.ErrorMessage} />;
     
     let redirect = null;
     //redirect = <Redirect to={props.redirectPath} /> 
 
-    let archives
+    let archives;
     if (props.posts) {archives = (<Archives 
         posts={props.posts}
         clicked={loadData}
-    />)}
+    />);};
     
     return (
         <div className={['page-wrapper', classes.AddPostWrapper].join(' ')}>
@@ -151,7 +144,7 @@ const EditPost = ( props ) => {
         </div>     
 
     );
-}
+};
 
 
 const mapStateToProps = state => {
@@ -162,14 +155,26 @@ const mapStateToProps = state => {
         error               : state.blog.error,
         redirect            : state.blog.redirect,
         message             : state.blog.message
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         updatePost  : (values, id) => dispatch(actions.updatePost(values, id)),
         getPost     : (id) => dispatch( actions.fetchPostsById(id)),
         onFetchPosts: ()   => dispatch( actions.fetchPosts()),
-    }
-}
+    };
+};
+
+EditPost.propTypes = {
+    post: PropTypes.object,
+    posts : PropTypes.posts,
+    getPost : PropTypes.func,
+    match : PropTypes.any,
+    updatePost : PropTypes.func,
+    loading : PropTypes.bool,
+    message: PropTypes.string,
+    onFetchPosts: PropTypes.func
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(EditPost);

@@ -19,7 +19,7 @@ export {
     newPostStart,
     setNewPostRedirectPath,
     updatePost
-} from './blog'
+} from './blog';
 
 export {
     getComments,
@@ -27,7 +27,7 @@ export {
     deleteComment,
     postComment,
     postCommentStart,
-} from './comments'
+} from './comments';
 
 export {
     getItems,
@@ -50,4 +50,4 @@ export {
 export {
     fetchOrders,
     fetchOrdersStart,
-} from './orders'
+} from './orders';

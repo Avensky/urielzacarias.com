@@ -3,43 +3,44 @@ import {connect} from 'react-redux';
 import classes from './Auth.module.scss';
 import Auxiliary from '../../../hoc/Auxiliary';
 import * as actions from '../../../store/actions/index';
-import Spinner from '../../../components/UI/Spinner/Spinner'
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 const Auth = props => {
-    const [auth, setAuth] = useState('login')
+    const [auth, setAuth] = useState('login');
     //console.log('auth',auth)
-    const [token, setToken] = useState(props.match.params.token)
+    const [token, setToken] = useState(props.match.params.token);
     //console.log('token',token)
 
     const [passwordComfirmShown, setPasswordComfirmShown] = useState(false);    
-    const togglePasswordComfirmVisiblity    = () => {setPasswordComfirmShown(passwordComfirmShown ? false : true)}
+    const togglePasswordComfirmVisiblity    = () => {setPasswordComfirmShown(passwordComfirmShown ? false : true);};
     const [passwordShown, setPasswordShown] = useState(false);
-    const togglePasswordVisiblity           = () => {setPasswordShown(passwordShown ? false : true)}
-    const loginToggleHandler                = () => {setAuth('login')}
-    const registerToggleHandler             = () => {setAuth('register')}
-    const forgotPasswordHandler             = () => {setAuth('forgot-password')}
-    const resetPasswordHandler              = () => {setAuth('reset-password')}
+    const togglePasswordVisiblity           = () => {setPasswordShown(passwordShown ? false : true);};
+    const loginToggleHandler                = () => {setAuth('login');};
+    const registerToggleHandler             = () => {setAuth('register');};
+    const forgotPasswordHandler             = () => {setAuth('forgot-password');};
+    const resetPasswordHandler              = () => {setAuth('reset-password');};
     const submitHandler = ( values, submitProps ) => {
-        props.onAuth( values, auth, token)
-        submitProps.setSubmitting(false)
-        submitProps.resetForm()
-    } 
-    let initialValues, validationSchema, selected, unselected, form, button, authSelector, socialAuth//, loader
+        props.onAuth( values, auth, token);
+        submitProps.setSubmitting(false);
+        submitProps.resetForm();
+    };
+    let initialValues, validationSchema, selected, unselected, form, button, authSelector, socialAuth; //, loader
 
 
     useEffect(() => {
-        if (props.match.params.token){ setAuth('reset-password')
-            console.log('reset-password')
-        } else {setAuth('login')}
-    },[props.match.params])
+        if (props.match.params.token){ setAuth('reset-password');
+            console.log('reset-password');
+        } else {setAuth('login');};
+    },[props.match.params]);
 
     useEffect(()=> {
-        const fetchData = async () => {props.onFetchUser()}
-          if ( !props.fetchedUser){fetchData()}
-        }, [props.fetchedUser, props.authRedirectPath])
+        const fetchData = async () => {props.onFetchUser();};
+          if ( !props.fetchedUser){fetchData();};
+        }, [props.fetchedUser, props.authRedirectPath]);
 
     let passwordRequirements = <div>
         <h3 className='text-left'>Password requirements: </h3>
@@ -50,7 +51,7 @@ const Auth = props => {
             <li>One Lowercase</li>    
             <li>One Number</li>    
         </ul> 
-    </div>
+    </div>;
     // eslint-disable-next-line default-case
     switch (auth) {
         case 'login': 
@@ -64,8 +65,8 @@ const Auth = props => {
                     .max(15, "Maximum 15 characters")
                     .required("Required!")
             });
-            selected = [classes.AuthToggle, classes.AuthSelected].join(' ')
-            unselected = classes.AuthToggle
+            selected = [classes.AuthToggle, classes.AuthSelected].join(' ');
+            unselected = classes.AuthToggle;
             authSelector = <div className={classes.AuthNav}>
                 <button 
                     onClick={loginToggleHandler}
@@ -77,7 +78,7 @@ const Auth = props => {
                     className={unselected}
                 ><h1 className="pointer"><span className="fa fa-user" /> Signup</h1>
                 </button>   
-            </div>
+            </div>;
             props.loading
                 ? form = <Spinner />
                 : form = <Auxiliary>
@@ -101,8 +102,8 @@ const Auth = props => {
                     <div className={classes.ErrorMessage}><ErrorMessage name="password" component="div" /></div>
                     
                     <div className='text-right margin-top-0'><div onClick={forgotPasswordHandler} className='pointer'>Forgot Password?</div> </div>
-                </Auxiliary>
-            button = <div className={classes.BtnDiv}><span className={['fa fa-sign-in'].join(' ')}></span> Sign In</div>
+                </Auxiliary>;
+            button = <div className={classes.BtnDiv}><span className={['fa fa-sign-in'].join(' ')}></span> Sign In</div>;
             !props.loading
                 ? socialAuth = <Auxiliary>
                     
@@ -123,8 +124,8 @@ const Auth = props => {
                         <a href="/api/google"><div className={classes.BtnDiv}><span className="fa fa-google-plus" /> Google+</div></a>
                     </button>
                 </Auxiliary>
-                : socialAuth = null
-            break
+                : socialAuth = null;
+            break;
         case 'register': 
             initialValues = {
                 email: '', 
@@ -147,8 +148,8 @@ const Auth = props => {
                     .oneOf([Yup.ref("password")], "Passwords  must match")
                     .required("Password confirm is required!")
             });
-            selected = classes.AuthToggle
-            unselected = [classes.AuthToggle, classes.AuthSelected].join(' ')
+            selected = classes.AuthToggle;
+            unselected = [classes.AuthToggle, classes.AuthSelected].join(' ');
             authSelector = <div className={classes.AuthNav}>
                 <button 
                     onClick={loginToggleHandler}
@@ -161,7 +162,7 @@ const Auth = props => {
                     className={unselected}
                 ><h1 className="pointer"><span className="fa fa-user" /> Signup</h1>
                 </button>   
-            </div>
+            </div>;
             props.loading || (props.submitted && props.userLoading)
                 ? form = <Spinner />
                 : form = <Auxiliary>
@@ -193,9 +194,9 @@ const Auth = props => {
                 </div>
                 <div className={classes.ErrorMessage}><ErrorMessage name="confirm_password" component="div" /></div>              
                 {passwordRequirements}
-            </Auxiliary>
-            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span>Sign Up</div>
-            break
+            </Auxiliary>;
+            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span>Sign Up</div>;
+            break;
         case 'forgot-password': 
             initialValues = {
                 email: ''
@@ -205,8 +206,8 @@ const Auth = props => {
                     .email("Please use a valid email address, such as user@example.com")
                     .required("Required!")
             });
-            selected = [classes.AuthToggle].join(' ')
-            unselected = classes.AuthToggle
+            selected = [classes.AuthToggle].join(' ');
+            unselected = classes.AuthToggle;
             authSelector = (<div>
                 <div className={classes.AuthNav}>
                     <button 
@@ -225,7 +226,7 @@ const Auth = props => {
                     <p className='text-left'>Enter an email address to get a password reset  link</p>
                 </div>
             </div>
-            )
+            );
 
             props.loading || (props.submitted && props.userLoading)
                 ? form = <Spinner />
@@ -237,9 +238,9 @@ const Auth = props => {
                         className={classes.AuthInput}
                     />
                     <div className={classes.ErrorMessage}><ErrorMessage name="email" component="div" /></div>
-                </Auxiliary>
-            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span>Forgot Password</div>
-            break
+                </Auxiliary>;
+            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span>Forgot Password</div>;
+            break;
         case 'reset-password': 
             initialValues = {
                 password: '',
@@ -258,8 +259,8 @@ const Auth = props => {
                     .oneOf([Yup.ref("password")], "Passwords  must match")
                     .required("Password confirm is required!")
             });
-            selected = classes.AuthToggle
-            unselected = classes.AuthToggle
+            selected = classes.AuthToggle;
+            unselected = classes.AuthToggle;
             authSelector = <Auxiliary>
                 <div className={classes.AuthNav}>
                     <button 
@@ -274,7 +275,7 @@ const Auth = props => {
                     </button>
                 </div>
                 <h2 className='text-left'>Create a new password!</h2>
-            </Auxiliary>
+            </Auxiliary>;
             props.loading || (props.submitted && props.userLoading)
                 ? form = <Spinner />
                 : form = <Auxiliary>
@@ -297,18 +298,18 @@ const Auth = props => {
                     </div>
                     <div className={classes.ErrorMessage}><ErrorMessage name="confirm_password" component="div" /></div>
                     {passwordRequirements}
-                </Auxiliary>
-            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span> Reset Password</div>    
-            break
-    }
+                </Auxiliary>;
+            button = <div className={classes.BtnDiv}><span className={['fa fa-user'].join(' ')}></span> Reset Password</div>;    
+            break;
+    };
 
     let message = false;
     props.token 
         ? message = <div className={classes.Message}>{props.token.message}</div>
-        : message = <div className={classes.Message} />
+        : message = <div className={classes.Message} />;
 
     let authRedirect = null;
-    if ( props.isAuthenticated ) { authRedirect = <Redirect to={props.authRedirectPath} /> }
+    if ( props.isAuthenticated ) { authRedirect = <Redirect to={props.authRedirectPath} />; }
 
     return(
         <div className='page-wrapper'>
@@ -336,9 +337,9 @@ const Auth = props => {
                 {socialAuth}
             </div>
         </div> 
-    )
+    );
     
-}
+};
 
 const mapStateToProps = state => {
     return {
@@ -359,7 +360,20 @@ const mapDispatchToProps = dispatch => {
         onAuth                  : (values, auth, token) => dispatch(actions.auth(values, auth, token)),
         onFbAuth                : ()                    => dispatch(actions.fbAuth()),
         onSetAuthRedirectPath   : ()                    => dispatch(actions.setAuthRedirectPath('/profile')),
-    }
-}
+    };
+};
+
+Auth.propTypes = {
+    match: PropTypes.any,
+    onAuth: PropTypes.func,
+    onFetchUser: PropTypes.func,
+    authRedirectPath: PropTypes.string,
+    loading: PropTypes.bool,
+    submitted: PropTypes.bool,
+    userLoading: PropTypes.any,
+    isAuthenticated: PropTypes.bool,
+    fetchedUser: PropTypes.any,
+    token: PropTypes.any,
+};
 
 export default connect (mapStateToProps, mapDispatchToProps)(Auth);

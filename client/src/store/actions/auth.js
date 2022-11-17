@@ -1,26 +1,26 @@
-import axios from 'axios'
+import axios from 'axios';
 //import axios from 'axios-https-proxy-fix'; 
 // const axios = require('axios-proxy-fix');
-import * as actionTypes from './actionTypes'
+import * as actionTypes from './actionTypes';
 
 export const fetchUserStart = () => {
     return {
         type: actionTypes.FETCH_USER_START
-    }
+    };
 };
 
 export const fetchUserSuccess = (payload) => {
     return {
         type: actionTypes.FETCH_USER_SUCCESS,
         payload: payload
-    }
+    };
 };
 
 export const fetchUserFail = (error) => {
     return {
         type: actionTypes.FETCH_USER_FAIL,
         error: error
-    }
+    };
 };
 
 //export const fetchUser = () => {
@@ -43,14 +43,14 @@ export const fetchUser = () => {
         dispatch(fetchUserStart());
         axios.get('/api/fetchUser')
         .then( result => {
-            const payload = result.data
+            const payload = result.data;
             dispatch(fetchUserSuccess(payload));
         })
         .catch( error => {
                 dispatch(fetchUserFail(error));
         });
-    }
-}
+    };
+};
 
 
 
@@ -61,21 +61,21 @@ export const fetchUser = () => {
 export const fetchUsersStart = () => {
     return {
         type: actionTypes.FETCH_USERS_START
-    }
+    };
 };
 
 export const fetchUsersSuccess = (payload) => {
     return {
         type: actionTypes.FETCH_USERS_SUCCESS,
         payload: payload
-    }
+    };
 };
 
 export const fetchUsersFail = (error) => {
     return {
         type: actionTypes.FETCH_USERS_FAIL,
         error: error
-    }
+    };
 };
 
 export const fetchUsers = () => {
@@ -83,23 +83,23 @@ export const fetchUsers = () => {
         dispatch(fetchUsersStart());
         axios.get('/api/v1/fetchUsers')
         .then( result => {
-            const payload = result.data
+            const payload = result.data;
             dispatch(fetchUsersSuccess(payload));
         })
         .catch( error => {
                 dispatch(fetchUsersFail(error));
         });
-    }
-}
+    };
+};
 export const logout = () => {
-    axios.get('/api/logout')
+    axios.get('/api/logout');
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
     return {
         type: actionTypes.LOGOUT
-    }
-}
+    };
+};
 
 
 export const checkLoginTimeout = (expirationTime) => {
@@ -115,32 +115,32 @@ export const auth = (values, auth, token) => {
     //console.log('authLogin = '+authLogin);
     return dispatch => {
         dispatch(authStart());
-        let url
+        let url;
         switch (auth) {
             case auth ='login':
-                url = '/api/login'
+                url = '/api/login';
                 break;
             case auth ='register':
-                url = '/api/signup'
+                url = '/api/signup';
                 break;
             case auth ='forgot-password':
-                url = '/api/forgotPassword'
+                url = '/api/forgotPassword';
                 break;
             case auth ='reset-password':
-                url = ('/api/resetPassword/'+token)
+                url = ('/api/resetPassword/'+token);
                 //console.log('resetPassword token',token)
                 break;
-            default: url = '/api/login'
+            default: url = '/api/login';
         }
-        let method
+        let method;
         auth === 'reset-password'
             ? method = axios.patch
-            : method = axios.post
+            : method = axios.post;
         method(url, values)
-            .then(response => {dispatch(authSuccess(response.data)) })
+            .then(response => {dispatch(authSuccess(response.data)); })
             .catch(err => {dispatch(authFail(err));});
-    }
-}
+    };
+};
 
 
 export const authStart = () => {
@@ -176,14 +176,14 @@ export const connect = (values) => {
             .then(response => {
                 //console.log('response = '+JSON.stringify(response));
                 //console.log('response = '+response);
-                dispatch(connectSuccess(response.data)) 
+                dispatch(connectSuccess(response.data)); 
              })
              .catch(err => {
                  //console.log('err = '+err);
                  dispatch(connectFail(err));
              });
-    }
-}
+    };
+};
 
 export const connectStart = () => {
     return {
@@ -214,10 +214,10 @@ export const connectFail = (error) => {
 export const fbAuth = () => {
     return dispatch => {
         dispatch(fbAuthStart());
-        dispatch(fbAuthSuccess()) 
+        dispatch(fbAuthSuccess()); 
         //dispatch(fbAuthFail(err));
-    }
-}
+    };
+};
 
 export const fbAuthStart = () => {
     return {
@@ -244,26 +244,26 @@ export const fbAuthFail = (error) => {
 export const newAddressStart  = () =>{
     return{
         type: actionTypes.NEW_ADDRESS_START
-    }
-}
+    };
+};
 
 export const newAddressFail = (error) => {
     return {
         type: actionTypes.NEW_ADDRESS_FAIL,
         error: error
-    }
-}
+    };
+};
 
 export const newAddressSuccess = (addressData) => {
     return {
         type: actionTypes.NEW_ADDRESS_SUCCESS,
         addressData: addressData
-    }
-}
+    };
+};
 
 export const newAddress = (values) => {
     return dispatch => {
-        dispatch(newAddressStart())
+        dispatch(newAddressStart());
         console.log('New Address Start');
         axios.post('/api/addAddress', values)
             .then(response => {
@@ -271,14 +271,14 @@ export const newAddress = (values) => {
                 console.log(response);
                 const data = response.data;
                 console.log(data);
-                dispatch(newAddressSuccess(data))
+                dispatch(newAddressSuccess(data));
         })
         .catch(error => {
             console.log(error);
-            dispatch(newAddressFail(error))
-        })    
-    }
-}
+            dispatch(newAddressFail(error));
+        });    
+    };
+};
 
 
 

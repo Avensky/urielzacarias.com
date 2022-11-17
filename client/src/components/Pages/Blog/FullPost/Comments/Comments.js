@@ -1,37 +1,38 @@
-import Comment from "./Comment/Comment"
-import classes from './Comments.module.scss'
+import Comment from "./Comment/Comment";
+import classes from './Comments.module.scss';
+import PropTypes from 'prop-types';
+
 const Comments = (props) => {
-    let commentCounter
-    let count = props.comments.length
+    let commentCounter;
+    let count = props.comments.length;
 
-    if (count > 1){ commentCounter = <p className={classes.Counter}>({count}) Comments:</p>
-    } else if (count === 1){commentCounter = <p className={classes.Counter}>(1) Comment:</p>
-    } else {commentCounter = <p className={classes.Counter}>No Comments</p>}
+    if (count > 1){ commentCounter = <p className={classes.Counter}>({count}) Comments:</p>;
+    } else if (count === 1){commentCounter = <p className={classes.Counter}>(1) Comment:</p>;
+    } else {commentCounter = <p className={classes.Counter}>No Comments</p>;};
 
-    let comments = null
+    let comments = null;
     if (props.comments) {
         comments = props.comments.map( comment => {
             const d = new Date(comment.date);
             const months = [ "January", "February", "March", "April", "May", "June", 
                 "July", "August", "September", "October", "November", "December" ];
             const month = (d.getMonth());
-            const selectedMonth = months[month]
-            const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ]
-            const day = d.getDay()
-            const selectedDay = days[day]
+            const selectedMonth = months[month];
+            const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ];
+            const day = d.getDay();
+            const selectedDay = days[day];
             const date = selectedDay + ', ' + selectedMonth  + " " + (d.getDate()) + ", " + d.getFullYear();
-            const time = d.toLocaleTimeString('en-US')
+            const time = d.toLocaleTimeString('en-US');
 
-            let edit = false
+            let edit = false;
 
             if (props.user){
                 //console.log('comment user ', comment.author)
                 //console.log('user ', props.user)
-                if  (comment.author === props.user._id) {edit = true}
+                if  (comment.author === props.user._id) {edit = true;};
             } else {
-                   if (comment.author === "Anonymous") {edit = true}
-            }
-          
+                   if (comment.author === "Anonymous") {edit = true;};
+            };
          
 
 
@@ -45,16 +46,22 @@ const Comments = (props) => {
                 time    = {time}
                 content = {comment.content}
                 edit    = {edit}
-            />
-        })
-    }
+            />;
+        });
+    };
 
     return <div className={classes.CommentsWrapper}>
-        {commentCounter}
+        {commentCounter};
         <div className={classes.Comments}>
-            {comments}
-        </div>
-    </div>
-}
+            {comments};
+        </div>;
+    </div>;
+};
 
-export default Comments
+Comments.propTypes = {
+    comments : PropTypes.object,
+    user: PropTypes.string,
+    delete: PropTypes.func
+};
+
+export default Comments;

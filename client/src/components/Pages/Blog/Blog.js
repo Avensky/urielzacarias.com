@@ -10,23 +10,23 @@ import Posts from './Posts/Posts';
 import FullPost from './FullPost/FullPost';
 import EditPost from './EditPost/EditPost';
 import AddPost from './AddPost/AddPost';
-
+import PropTypes from 'prop-types';
 
 const Blog = (props) => {
-    const { posts } = props
-    const history = useHistory()
-    const fetchData     = async ()   => { props.onFetchPosts() }
-    const loadComments  = async (id) => { props.getComments(id) }
-    const loadPost      = async (id) => { props.getPost(id) }
+    const { posts } = props;
+    const history = useHistory();
+    const fetchData     = async ()   => { props.onFetchPosts(); };
+    const loadComments  = async (id) => { props.getComments(id); };
+    const loadPost      = async (id) => { props.getPost(id); };
     const loadData      = async (id) => {
         //on clicked post load data
-        history.push('/blog/fullpost/'+id)
-        loadPost(id)
-        loadComments(id)
-    }
+        history.push('/blog/fullpost/'+id);
+        loadPost(id);
+        loadComments(id);
+    };
 
     // load blog data
-    useEffect(() => {  if (!posts){ fetchData() } },[posts])
+    useEffect(() => {  if (!posts){ fetchData(); }; },[posts]);
 
     let routes = (
         <Switch>
@@ -35,13 +35,13 @@ const Blog = (props) => {
                 loadData = {loadData} loadComments={loadComments} {...props} />} />
           <Route path="/blog/editpost/:blogId" render={ props => <EditPost {...props} />} />
           <Route path="/blog/addPost"          render={ props => <AddPost  {...props} />} />    
-        </Switch>)
+        </Switch>);
 
-    let archives
+    let archives;
     if (posts) {archives = (<Archives 
         posts={props.posts}
         loadData={loadData}
-    />)}
+    />);};
 
     return (
         <div className={['page-wrapper', classes.BlogLayout].join(' ')}>
@@ -58,21 +58,29 @@ const Blog = (props) => {
                 </section>
             </div>                
         </div>
-    )
-}
+    );
+};
 const mapStateToProps = state => {
     return {
         posts   : state.blog.posts,
         loading : state.blog.loading,
         user    : state.auth.payload
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts:  () => dispatch( actions.fetchPosts()),
-        getPost:  (id) => dispatch( actions.fetchPostsById(id)),
-        getComments     : (id)          => dispatch( actions.getComments(id)),
-    }
-}
+        onFetchPosts    : ()    => dispatch( actions.fetchPosts()),
+        getPost         : (id)  => dispatch( actions.fetchPostsById(id)),
+        getComments     : (id)  => dispatch( actions.getComments(id)),
+    };
+};
+
+Blog.propTypes = {
+    posts : PropTypes.object,
+    onFetchPosts : PropTypes.func,
+    getComments : PropTypes.func,
+    getPost : PropTypes.func,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps) (Blog);

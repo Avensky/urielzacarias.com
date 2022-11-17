@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
-import user from '../../../../../assets/images/user.jpg'
+import user from '../../../../../assets/images/user.jpg';
 import classes from './Post.module.scss';
 import { Link, NavLink } from 'react-router-dom';
 import Modal from '../../../../UI/Modal/Modal';
+import PropTypes from 'prop-types';
 
 const Post = (props) => {
-    const [modal, setModal] = useState(false)
-    const modalHandler = () => { setModal(true) }
-    const cancelHandler = () => { setModal(false) }
+    const [modal, setModal] = useState(false);
+    const modalHandler = () => { setModal(true); };
+    const cancelHandler = () => { setModal(false); };
     return(<article className={[classes.Post,classes.Card,props.clName].join(' ')} >
-        {props.date     ? <div className={classes.CardDate}><p>{props.date}</p></div>           : null}
+        {props.date     ? <div className={classes.CardDate}><p>{props.date}</p></div>           : null};
         {props.title    
             ? <div className={classes.Title} onClick={()=>props.loadData(props.id)} >
                 <NavLink 
@@ -17,7 +18,7 @@ const Post = (props) => {
                     className={classes.Title}
                 >{props.title}</NavLink>
             </div>         
-            : null}
+            : null};
         {props.content  ? <div className={classes.CardDescription}><p>{props.content}</p></div> : null}
         
         
@@ -47,7 +48,7 @@ const Post = (props) => {
                         </button>
                     </div>
                 </div>
-            : null}
+            : null};
 
         {props.edit2
             ? <div className={[classes.Edit,props.klName].join(' ')}>
@@ -58,11 +59,31 @@ const Post = (props) => {
                     onClick={props.click}
                 >Delete</button>
             </div>
-            : null}
+            : null};
 
         {props.author&&props.time 
             ? <div className={classes.CardAuthor}><p>Posted by {props.author} at {props.time} </p></div>       
-            : null}
+            : null};
     </article>
-)}
+);};
+
+Post.propTypes = {
+    posts: PropTypes.object,
+    loading: PropTypes.bool,
+    clName : PropTypes.string,
+    date: PropTypes.string,
+    title: PropTypes.string,
+    loadData: PropTypes.string,
+    id: PropTypes.string,
+    pic: PropTypes.string,
+    delete: PropTypes.string,
+    edit: PropTypes.string,
+    klName: PropTypes.string,
+    click: PropTypes.string,
+    author: PropTypes.string,
+    time: PropTypes.string,
+    content: PropTypes.string,
+    edit2: PropTypes.bool,
+};
+
 export default Post;

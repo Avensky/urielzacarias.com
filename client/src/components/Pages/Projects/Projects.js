@@ -1,8 +1,8 @@
-import React        from 'react'
+import React        from 'react';
 import caringvegan  from '../../../assets/images/caringvegan2.png';
 import author       from '../../../assets/images/author2.png';
 import veganDining  from '../../../assets/images/veganDining.png';
-import classes      from './Projects.module.scss'
+import classes      from './Projects.module.scss';
 import Project      from './Project/Project';
 
 const Projects = props => (
@@ -49,6 +49,6 @@ const Projects = props => (
             />
         </div>
     </div>
-)
+);
 
-export default Projects
+export default Projects;

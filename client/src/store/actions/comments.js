@@ -1,5 +1,5 @@
-import axios from 'axios'
-import * as actionTypes from './actionTypes'
+import axios from 'axios';
+import * as actionTypes from './actionTypes';
 
 /*******************************************
 ********************************************
@@ -11,25 +11,25 @@ export const getCommentsSuccess = (data) => {
     return {
         type:  actionTypes.GET_COMMENTS_SUCCESS,
         comments: data,
-    }
-}
+    };
+};
 export const getCommentsFail = (error) => {
     return {
         type:  actionTypes.GET_COMMENTS_FAIL, 
         error: error
-    }
-}
+    };
+};
 export const getCommentsStart = () => {
     return {
         type:  actionTypes.GET_COMMENTS_START
-    }
-}
+    };
+};
 export const getComments = (id) => {
     return dispatch => {
         dispatch(getCommentsStart());
         axios.get( '/api/comments/' + id)
         .then( result => {
-            const data = result.data
+            const data = result.data;
             //console.log('getComments ', data)
                 dispatch(getCommentsSuccess(data));
             } )
@@ -37,7 +37,7 @@ export const getComments = (id) => {
                 dispatch(getCommentsFail(error));
             } );
     };
-}
+};
 
 /*******************************************
 ********************************************
@@ -48,31 +48,31 @@ export const getComments = (id) => {
 export const postCommentStart  = () =>{ 
 return { 
         type: actionTypes.POST_COMMENT_START 
-    } }
+    }; };
 
 export const postCommentFail = (error) => {
     return {
         type: actionTypes.POST_COMMENT_FAIL,
         error: error
-    }}
+    };};
 
 export const postCommentSuccess = (data) => {
     return {
         type: actionTypes.POST_COMMENT_SUCCESS,
         message: data,
-    }}
+    };};
 
 export const postComment = (values) => {
     return dispatch => {
-        dispatch(postCommentStart())
+        dispatch(postCommentStart());
         axios.post('/api/postComment', values)
             .then(response => {
-                dispatch(postCommentSuccess(response.data))
+                dispatch(postCommentSuccess(response.data));
         })
         .catch(error => {
-            dispatch(postCommentFail(error))
-        })    
-    }}
+            dispatch(postCommentFail(error));
+        });    
+    };};
 
 /*******************************************
 ********************************************
@@ -83,24 +83,24 @@ export const deleteCommentSuccess = (data) => {
     return {
         message : data,
         type:  actionTypes.DELETE_COMMENT_SUCCESS, 
-    }
-}
+    };
+};
 export const deleteCommentFail = (error) => {
     return {
         type:  actionTypes.DELETE_COMMENT_FAIL, 
         error: error
-    }
-}
+    };
+};
 export const deleteCommentStart = () => {
     //console.log("delete Comment start")
     return {
         type:  actionTypes.DELETE_COMMENT_START
-    }
-}
+    };
+};
 
 export const deleteComment = (replyTo, id) => {
     //const values = {replyTo:replyTo, id:id}
-    const values = {replyTo, id}
+    const values = {replyTo, id};
 
     //JSON.stringify(values)
     
@@ -115,7 +115,7 @@ export const deleteComment = (replyTo, id) => {
             dispatch(deleteCommentFail(error));
         });
     };
-}
+};
 
 /*******************************************
 ********************************************
@@ -126,19 +126,19 @@ export const updateCommentSuccess = (data) => {
     return {
         message : data,
         type    : actionTypes.UPDATE_COMMENT_SUCCESS, 
-    }
-}
+    };
+};
 export const updateCommentFail = (error) => {
     return {
         type    : actionTypes.UPDATE_COMMENT_FAIL, 
         error   : error
-    }
-}
+    };
+};
 export const updateCommentStart = () => {
     return {
         type    : actionTypes.UPDATE_COMMENT_START
-    }
-}
+    };
+};
 
 export const updateComment = (values,id) => {
     return dispatch => {
@@ -151,4 +151,4 @@ export const updateComment = (values,id) => {
             dispatch(updateCommentFail(error));
         });
     };
-}
+};

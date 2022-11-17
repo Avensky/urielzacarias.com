@@ -2,13 +2,14 @@ import React, { useState }  from 'react';
 import classes from './Link.module.scss';
 import Modal from  '../../../UI/Modal/Modal';
 // import classes from '../../Pages.module.scss'
+import PropTypes from 'prop-types';
 
 const Link = props => {
-    const [unlink, setUnlink] = useState(false)
+    const [unlink, setUnlink] = useState(false);
 
-    const unlinkHandler = () => { setUnlink(true) }
+    const unlinkHandler = () => { setUnlink(true); };
 
-    const cancelHandler = () => { setUnlink(false) }
+    const cancelHandler = () => { setUnlink(false); };
 
     // const continueHandler = () => {
     //     const href = props.providerUnlink;
@@ -50,7 +51,23 @@ const Link = props => {
             }
         </div>
         
-    )
-}
+    );
+};
+
+Link.propTypes = {
+    token : PropTypes.string,
+    id: PropTypes.string,
+    icon: PropTypes.string,
+    mystyle: PropTypes.string,
+    link: PropTypes.string,
+    name: PropTypes.string,
+    displayName: PropTypes.string,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    provider: PropTypes.string,
+    userLink: PropTypes.string,
+    providerUnlink: PropTypes.string,
+    password: PropTypes.string,
+};
 
 export default Link;

@@ -8,7 +8,7 @@ const background = () => {
     <div className={classes.BackgroundWrapper}>
         <video className={classes.Background} src={myVid} autoPlay={true} muted loop={true} playsInline></video>
         <img className={classes.Background} src={myImg} alt='background'/>
-    </div>)
-}
+    </div>);
+};
 
 export default background;

@@ -1,5 +1,5 @@
-import React from 'react'
-import classes from './Footer.module.scss'
+import React from 'react';
+import classes from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
 
 const Footer = (props) => {
@@ -56,8 +56,12 @@ const Footer = (props) => {
                     <p>© 2021 UrielZacarias.com All Rights Reserved - <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
                 </div>
             </footer>
-        )
+        );
     
-}
+};
 
+Footer.propTypes = {
+    isAuthenticated: bool,
+    isLogged: bool
+};
 export default Footer;

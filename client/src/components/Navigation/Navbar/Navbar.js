@@ -39,8 +39,8 @@ const navbar = ( props ) => {
                 <NavItems isLogged={props.isLogged} totalItems={props.totalItems}/>
             </div>
         </div>
-    )
-}
+    );
+};
 
 
 export default navbar;

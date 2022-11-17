@@ -7,7 +7,7 @@ const initialState = {
     loading  : false,
     error    : null,
     message  : null
-}
+};
 /*******************************************************************************
 ********************************************************************************
  * Get  Comments
@@ -18,16 +18,17 @@ const getCommentsStart = (state, action) => {
         loading: true,
         error: null
         //message: null
-    })
-}
+    });
+};
 
 const getCommentsFail = (state, action) => {
     return updateObject( state, {
         loading: false,
         error: action.error,
         //message: action.message,
-    })
-}
+    });
+};
+
 const getCommentsSuccess = (state, action) => {
     return updateObject( state, {
         comments: action.comments,
@@ -35,8 +36,8 @@ const getCommentsSuccess = (state, action) => {
         error: null
         //error: null,
         //message: action.message,
-    })
-}
+    });
+};
 
 /*******************************************************************************
 ********************************************************************************
@@ -48,24 +49,24 @@ const deleteCommentStart = (state, action) => {
         loading: true,
         error: null,
         message: null
-    })
-}
+    });
+};
 
 const deleteCommentFail = (state, action) => {
     return updateObject( state, {
         loading: false,
         error: action.error,
         message: action.message
-    })
-}
+    });
+};
 const deleteCommentSuccess = (state, action) => {
     return updateObject( state, {
         loading: false,
         message: action.message,
         comments: null,
         error: null
-    })
-}
+    });
+};
 
 
 /*******************************************************************************
@@ -79,16 +80,16 @@ const postCommentStart = (state, action) => {
         loading: true,
         error: null,
         message: null
-    })
-}
+    });
+};
     
 const postCommentFail = (state, action) => {
     return updateObject( state, { 
         loading: false,
         error: action.error,
         message: action.message,
-    })
-}
+    });
+};
 
 const postCommentSuccess = (state, action) => {
     return updateObject(state, {
@@ -96,8 +97,8 @@ const postCommentSuccess = (state, action) => {
         message: action.message,
         comments: null,
         error: null
-    })
-}
+    });
+};
 
 /*******************************************************************************
 ********************************************************************************
@@ -109,16 +110,16 @@ const updateCommentStart = (state, action) => {
     return updateObject( state, { 
         loading: true,
         error: null
-    })
-}
+    });
+};
 
 const updateCommentFail = (state, action) => {
     return updateObject( state, { 
         loading: false,
         error: action.error,
         message: action.message,
-    })
-}
+    });
+};
     
 const updateCommentSuccess = (state, action) => {
     return updateObject(state, {
@@ -126,8 +127,8 @@ const updateCommentSuccess = (state, action) => {
         message: action.message,
         comments:null,
         error: null
-    })
-}
+    });
+};
 
 
 const reducer = (state = initialState, action) => {
@@ -151,6 +152,6 @@ const reducer = (state = initialState, action) => {
 
         default: return state;     
     }
-}
+};
 
 export default reducer;

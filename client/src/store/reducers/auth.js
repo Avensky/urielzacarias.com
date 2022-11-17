@@ -51,7 +51,7 @@ const connectStart = ( state, action ) => {
 };
 
 const connectSuccess = (state, action) => {
-    console.log(action.idToken)
+    console.log(action.idToken);
     if (action.idToken === 'OK'){
         return updateObject( state, { 
             token: action.idToken,
@@ -101,8 +101,8 @@ const fetchUserStart = (state, action) => {
     return updateObject(state, {
         error: null,
         userLoading: true
-    })
-}
+    });
+};
 
 const fetchUserSuccess = (state, action) => {
     return updateObject(state, {
@@ -110,15 +110,15 @@ const fetchUserSuccess = (state, action) => {
         error: null,
         loading: false,
         userLoading: false
-    })
-}
+    });
+};
 const fetchUserFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false,
         userLoading: false
     });
-}
+};
 
 
 
@@ -129,8 +129,8 @@ const fetchUsersStart = (state, action) => {
     return updateObject(state, {
         error: null,
         userLoading: true
-    })
-}
+    });
+};
 
 const fetchUsersSuccess = (state, action) => {
     console.log(action);
@@ -139,42 +139,42 @@ const fetchUsersSuccess = (state, action) => {
         error: null,
         loading: false,
         userLoading: false
-    })
-}
+    });
+};
 const fetchUsersFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false,
         userLoading: false
     });
-}
+};
 
 const authLogout = (state, action) => {
     return updateObject(state, { token: null, userId: null });
 };
 
 const setAuthRedirectPath = (state, action) => {
-    return updateObject(state, { authRedirectPath: action.path })
-}
+    return updateObject(state, { authRedirectPath: action.path });
+};
 
 const newAddressStart = (state, action) => {
     return updateObject( state, {        
         error: null, 
         loading: true,
-        addressData: null })}
+        addressData: null });};
 
 const newAddressFail = (state, action) => {
     return updateObject( state, { 
         loading: false, 
         error: action.error,
-    })}
+    });};
   
 const newAddressSuccess = (state, action) => {
     //const newAddress = updateObject(action.addressData, { id: action.addressId })
     return updateObject(state, {
         loading: false,
         addressData: action.addressData 
-    })}
+    });};
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {

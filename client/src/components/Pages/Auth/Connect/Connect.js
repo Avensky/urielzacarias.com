@@ -1,45 +1,46 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 //import Auxiliary from '../../../hoc/Auxiliary';
-import classes from './Connect.module.scss'
+import classes from './Connect.module.scss';
 import Spinner from '../../../UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../../../store/actions/index';
 //import { Redirect } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 //import { Persist } from 'formik-persist'
-import * as Yup from 'yup'
+import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 const ConnectLocal = props => {
 
     const [passwordComfirmShown, setPasswordComfirmShown] = useState(false);    
-    const togglePasswordComfirmVisiblity = () => {setPasswordComfirmShown(passwordComfirmShown ? false : true)}
+    const togglePasswordComfirmVisiblity = () => {setPasswordComfirmShown(passwordComfirmShown ? false : true);};
     const [passwordShown, setPasswordShown] = useState(false);
-    const togglePasswordVisiblity = () => {setPasswordShown(passwordShown ? false : true)}
+    const togglePasswordVisiblity = () => {setPasswordShown(passwordShown ? false : true);};
 
 
     const submitHandler = ( values, submitProps ) => {
-        props.onConnect(values)
-        submitProps.setSubmitting(false)
-        submitProps.resetForm()
-    }
+        props.onConnect(values);
+        submitProps.setSubmitting(false);
+        submitProps.resetForm();
+    };
 
     let message = false;
     props.token 
         ? message = <div className={classes.Message}>{props.token.message}</div>
-        : message = <div className={classes.Message} />
+        : message = <div className={classes.Message} />;
 
 
     let authRedirect = null;
     if (props.authRedirectPath !== '/') {
-         authRedirect = <Redirect to={props.authRedirectPath} />
+         authRedirect = <Redirect to={props.authRedirectPath} />;
     }
     
     const initialValues = {
         email: '', 
         password: '',
         confirm_password: ''
-    }
+    };
     const validationSchema = Yup.object({
         email: Yup.string()
             .email("Invalid email format")
@@ -55,14 +56,14 @@ const ConnectLocal = props => {
         confirm_password: Yup.string()
             .oneOf([Yup.ref("password")], "Passwords  must match")
             .required("Password confirm is required!")
-    })
+    });
     
-    let loader
+    let loader;
     if ( props.loading || (props.submitted && props.userLoading)) {
         //form = <Spinner />
-        loader = <Spinner />
+        loader = <Spinner />;
 
-    }
+    };
     
     return(
         <div className='page-wrapper'>
@@ -132,8 +133,8 @@ const ConnectLocal = props => {
                 </Formik>
             </div>
         </div>
-    )
-}
+    );
+};
 
 
 const mapStateToProps = state => {
@@ -150,7 +151,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onConnect              : (values)   => dispatch(actions.connect(values)),
-    }
-}
+    };
+};
+
+ConnectLocal.propTypes = {
+    onConnect : PropTypes.func,
+    token: PropTypes.string,
+    authRedirectPath: PropTypes.string,
+    loading: PropTypes.bool,
+    submitted: PropTypes.bool,
+    userLoading: PropTypes.bool
+};
 
 export default connect (mapStateToProps, mapDispatchToProps)(ConnectLocal);

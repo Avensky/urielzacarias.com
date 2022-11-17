@@ -1,7 +1,7 @@
-import {configureStore} from '@reduxjs/toolkit'
-import authReducer from './reducers/auth'
-import blogReducer from './reducers/blog'
-import commentsReducer from './reducers/comments'
+import {configureStore} from '@reduxjs/toolkit';
+import authReducer from './reducers/auth';
+import blogReducer from './reducers/blog';
+import commentsReducer from './reducers/comments';
 
 export default configureStore({
     reducer: {
@@ -12,4 +12,4 @@ export default configureStore({
     getDefaultMiddleware({
         serialzableCheck: false,
     })
-})
+});

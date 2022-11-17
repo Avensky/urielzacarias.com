@@ -4,27 +4,30 @@ import classes from './Posts.module.scss';
 import Post from '../Posts/Post/Post';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/index';
+import PropTypes from 'prop-types';
 
 const Posts = ( props ) => {
-    let posts 
+    let posts;
     props.posts
-        ? posts = props.posts.sort((a,b)=>{return new Date(b.date)-new Date(a.date)})
-        : posts = props.posts
+        ? posts = props.posts.sort(
+            (a,b)=>{ return new Date(b.date)-new Date(a.date); }
+        )
+        : posts = props.posts;
 //    console.log('posts = ',posts)
-    let blog = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-    if (props.loading) { blog = <Spinner /> }
+    let blog = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+    if (props.loading) { blog = <Spinner />; }
     if (posts) {
         blog = posts.map( post => {
             const d = new Date(post.date);
             const months = [ "January", "February", "March", "April", "May", "June", 
                 "July", "August", "September", "October", "November", "December" ];
             const month = (d.getMonth());
-            const selectedMonth = months[month]
-            const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ]
-            const day = d.getDay()
-            const selectedDay = days[day]
+            const selectedMonth = months[month];
+            const days = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday" ];
+            const day = d.getDay();
+            const selectedDay = days[day];
             const date = selectedDay + ', ' + selectedMonth  + " " + (d.getDate()) + ", " + d.getFullYear();
-            const time = d.toLocaleTimeString('en-US')
+            const time = d.toLocaleTimeString('en-US');
             return (
                 <Post
                     key      = {post._id}
@@ -39,27 +42,41 @@ const Posts = ( props ) => {
                     loadData  = {props.loadData}
                     //comments = {props.comments || []}
                 />
-            )
-        })
-    }
+            );
+        });
+    };
 
     return (<div className={classes.Posts}>
                     {blog}
                 </div>            
-    )
-}
+    );
+};
 const mapStateToProps = state => {
     return {
         posts   : state.blog.posts,
         loading : state.blog.loading,
         user    : state.auth.payload
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchPosts    :  ()   => dispatch( actions.fetchPosts()),
         getPost         :  (id) => dispatch( actions.fetchPostsById(id)),
-    }
-}
+    };
+};
+
+Posts.propTypes = {
+    clName : PropTypes.string,
+    date : PropTypes.string,
+    title : PropTypes.string,
+    posts : PropTypes.object,
+    loading : PropTypes.bool,
+    loadData : PropTypes.string,
+    id : PropTypes.string,
+    content : PropTypes.string,
+    pic : PropTypes.string,
+    edit : PropTypes.bool,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps) (Posts);

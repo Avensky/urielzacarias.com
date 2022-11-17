@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './About.module.scss';
-import user from '../../../assets/images/me.jpg'
+import user from '../../../assets/images/me.jpg';
 const About = () => {
 
     let column = <div className={classes.column}>
@@ -31,25 +31,25 @@ const About = () => {
             </div>
         </div>
 
-    </div>
+    </div>;
     return(
         <div className={['page-wrapper', classes.AboutLayout].join(' ')}>
             <div className={classes.About}>
                 <figure className={classes.figure}>
                     <img src={user} alt='user' />
                 </figure>
-                <h1>Hello World, I'm Uriel Zacarias.</h1>
+                <h1>Hello World, I&apos;m Uriel Zacarias.</h1>
                 <div className={classes.bio}>
                     <p>
                         I am a full stack web developer looking for an opportunity to grow.   
-                        I got my first certificate, "Responsive Web Design", from FreeCodeCamp in March 2019. 
-                        I then completed the "Full Stack Web Developer" Nanodegree at Udacity in September 2019. 
+                        I got my first certificate, &quot;Responsive Web Design&quot;, from FreeCodeCamp in March 2019. 
+                        I then completed the &quot;Full Stack Web Developer&quot; Nanodegree at Udacity in September 2019. 
                         This certificate focused on building web applications using a Linux server (Ubuntu) and a Flask (Python) framework.
                     </p>
                     
                     <p>
-                        I've since then focused my research on Javascript frameworks. 
-                        I completed "React-The Complete Guide (Incl Hooks, React Router, Redux)" certificate at Udemy, in April 2020. 
+                        Iv&apos;e since then focused my research on Javascript frameworks. 
+                        I completed &quot;React-The Complete Guide (Incl Hooks, React Router, Redux)&quot; certificate at Udemy, in April 2020. 
                         I preffer building web applications using Express.js and React.js, although I am open to learning new technologies.
                     </p>
                 </div>
@@ -61,6 +61,7 @@ const About = () => {
                 
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default About;

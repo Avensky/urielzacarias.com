@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Link from './Link/Link';
 import classes from './Profile.module.scss';
 import * as actions from '../../../store/actions/index';
+import PropTypes from 'prop-types';
 // import Address from './Address/Address'
 // import { useHistory }from 'react-router-dom'
 const Profile = (props) =>{
@@ -13,9 +14,9 @@ const Profile = (props) =>{
     //const editAddressHandler = () => {history.push('/contactData')}
 
     useEffect(()=> {
-        const fetchData = async () => {props.onFetchUser()}
-          if ( props.authRedirectPath !== '/'){fetchData()}
-    }, [])
+        const fetchData = async () => {props.onFetchUser();};
+          if ( props.authRedirectPath !== '/'){fetchData();};
+    }, []);
 
 
     // address = (
@@ -51,7 +52,7 @@ const Profile = (props) =>{
             icon            = "fa-user"
             mystyle         = "auth-btn"
             provider        = '/connectlocal' 
-            providerUnlink  = '/api/unlink/local' />)
+            providerUnlink  = '/api/unlink/local' />);
     
     facebook = (
         <Link
@@ -60,7 +61,7 @@ const Profile = (props) =>{
             icon            = "fa-facebook"
             mystyle         = "btn-primary"
             provider        = '/api/connect/facebook'
-            providerUnlink  = '/api/unlink/facebook' />)
+            providerUnlink  = '/api/unlink/facebook' />);
     
     google = (
         <Link
@@ -69,7 +70,7 @@ const Profile = (props) =>{
             icon            = "fa-google-plus"
             mystyle         = "btn-danger"
             provider        = '/api/connect/google'
-            providerUnlink  = '/api/unlink/google' />)
+            providerUnlink  = '/api/unlink/google' />);
 
     if (props.payload['local']) {
         local = (
@@ -84,8 +85,8 @@ const Profile = (props) =>{
                 mystyle         = "auth-btn"
                 provider        = '/api/authentication' 
                 providerUnlink  = '/api/unlink/local' 
-        />)
-    }
+        />);
+    };
     
     if (props.payload['facebook'] && props.payload['facebook'].token) {
         facebook = (
@@ -100,8 +101,8 @@ const Profile = (props) =>{
                 mystyle         = "btn-primary"
                 provider        = '/api/connect/facebook' 
                 providerUnlink  = '/api/unlink/facebook' 
-        />)
-    }
+        />);
+    };
 
 //    if (props.payload['twitter'] && props.payload['twitter'].token) {
 //        twitter = (
@@ -143,8 +144,8 @@ const Profile = (props) =>{
                 mystyle         = "btn-danger"
                 provider        = '/api/connect/google'
                 providerUnlink  = '/api/unlink/google'
-        />)
-    }
+        />);
+    };
 
     return (
         <div className={['page-wrapper', classes.ProfileLayout].join(' ')}>
@@ -166,20 +167,27 @@ const Profile = (props) =>{
                 </div>
             </div>
         </div>
-    )
+    );
     
-}
+};
 
 const mapStateToProps = state => {
     return {
         payload: state.auth.payload,
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUser: () => dispatch(actions.fetchUser()),
-    }
-}
+    };
+};
+
+Profile.propTypes = {
+    onFetchUser: PropTypes.object,
+    authRedirectPath: PropTypes.string,
+    payload: PropTypes.object,
+
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

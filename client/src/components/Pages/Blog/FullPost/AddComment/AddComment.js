@@ -1,15 +1,16 @@
 import React from 'react';
-import classes from './AddComment.module.scss'
+import classes from './AddComment.module.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup'
-import Spinner from '../../../../UI/Spinner/Spinner'
+import * as Yup from 'yup';
+import Spinner from '../../../../UI/Spinner/Spinner';
+import PropTypes from 'prop-types';
 
 const AddComment = props => {
     const submitHandler = ( values, submitProps ) => {
-        props.postComment( values)
-        submitProps.setSubmitting(false)
-        submitProps.resetForm()
-    } 
+        props.postComment( values);
+        submitProps.setSubmitting(false);
+        submitProps.resetForm();
+    };
 
     let initialValues = {content: '', replyTo:props.replyTo};
 
@@ -18,7 +19,7 @@ const AddComment = props => {
             .required("Required!")
     });
 
-    let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+    let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
     props.loading
         ? form = <Spinner />
         : form = <div>
@@ -34,11 +35,11 @@ const AddComment = props => {
                 </div>                            
             </div>
             <div className={classes.ErrorMessage}><ErrorMessage name="content" component="div" /></div>
-        </div>
-    let message
+        </div>;
+    let message;
     props.message
         ? message = <div className={classes.Message}>{props.message}</div>
-        : message = <div className={classes.Message} />
+        : message = <div className={classes.Message} />;
 
     return (
             <div className={classes.AddPost}>
@@ -62,6 +63,13 @@ const AddComment = props => {
                 </Formik>
             </div>
     );
-}
+};
+
+AddComment.propTypes = {
+    postComment: PropTypes.func,
+    replyTo: PropTypes.func,
+    loading: PropTypes.bool,
+    message: PropTypes.string
+};
 
 export default AddComment;

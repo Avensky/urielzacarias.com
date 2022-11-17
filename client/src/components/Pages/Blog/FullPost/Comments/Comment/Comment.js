@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import classes from './Comment.module.scss'
-import Modal from '../../../../../UI/Modal/Modal'
+import classes from './Comment.module.scss';
+import Modal from '../../../../../UI/Modal/Modal';
+import PropTypes from 'prop-types';
 
 const Comment = (props) => {
-    const [modal, setModal] = useState(false)
-    const modalHandler = () => { setModal(true) }
-    const cancelHandler = () => { setModal(false) }
+    const [modal, setModal] = useState(false);
+    const modalHandler = () => { setModal(true); };
+    const cancelHandler = () => { setModal(false); };
 
-    const [reply, setReply] = useState(false)
-    const replyHandler = () => { setReply(true) }
+    const [reply, setReply] = useState(false);
+    const replyHandler = () => { setReply(true); };
  //   const cancelreplyHandler = () => { setReply(false) }
 
     return<div className={classes.Comment}>
@@ -40,8 +41,19 @@ const Comment = (props) => {
                         </button>
                     </div>
                 </div>
-            : null}
-    </div>
-}
+            : null};
+    </div>;
+};
 
-export default Comment
+Comment.propTypes = {
+    author: PropTypes.string,
+    date: PropTypes.string,
+    time: PropTypes.string,
+    content: PropTypes.string,
+    delete: PropTypes.func,
+    replyTo: PropTypes.func,
+    id: PropTypes.string,
+    edit: PropTypes.bool
+};
+
+export default Comment;

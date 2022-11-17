@@ -45,6 +45,6 @@ const project = (props) => (
                 </div>
             : null }
         </div> 
-    )
+    );
 
 export default project;

@@ -1,5 +1,6 @@
 name: Deployment
-on:
+on: 
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -49,6 +50,10 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: cd client && npm ci
 #       - name: Get code
 #         uses: actions/checkout@v3
 #       - name: Load & cache dependencies

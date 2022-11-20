@@ -10,8 +10,13 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: install dependencies
-        run: cd server && npm ci
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: cache-client-node-modules-${{ hashFiles('**/client/package-lock.json') }}
+#      - name: install dependencies
+#        run: cd server && npm ci
       - name: install dependencies
         run: cd client && npm ci
 #       - name: Load & cache dependencies
@@ -29,8 +34,13 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: install dependencies
-        run: cd server && npm ci
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: cache-client-node-modules-${{ hashFiles('**/client/package-lock.json') }}
+#      - name: install dependencies
+#        run: cd server && npm ci
       - name: install dependencies
         run: cd client && npm ci
       - name: Test code
@@ -52,6 +62,11 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: cache-client-node-modules-${{ hashFiles('**/client/package-lock.json') }}
       - name: install dependencies
         run: cd client && npm ci
 #       - name: Get code
@@ -60,23 +75,24 @@ jobs:
 #         uses: ./.github/actions/cached-deps
       - name: Build website
         run: cd client && npm run build
-#       - name: Upload artifacts
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: dist-files
-#           path: dist
-#   deploy:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Get code
-#         uses: actions/checkout@v3
-#       - name: Get build artifacts
-#         uses: actions/download-artifact@v3
-#         with:
-#           name: dist-files
-#           path: ./dist
-#       - name: Output contents
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-files
+          path: build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Get code
+#        uses: actions/checkout@v3
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
+          path: ./build
+      - name: Output contents
+        run: echo "Depolying...."
 #         run: ls
 #       - name: Deploy site
 #         id: deploy

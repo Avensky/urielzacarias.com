@@ -10,18 +10,16 @@ on:
 jobs: 
   build:
     runs-on: self-hosted
-
-  steps:
-  - uses: actions/checkout@v2
-  - name: Use Node.js ${{ matrix.node-version }}
-    uses: actions/setup-node@v1
-    with: 
-      node-version: ${{ matrix.node-version }}
-  - run: |
-      cd server
-      npm i
-      cd ../client
-      npm i
-      npm run build
-
-
+    steps: 
+    - name: Get Code
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with: 
+        node-version: ${{ matrix.node-version }}
+    - run: |
+        cd server
+        npm i
+        cd ../client
+        npm i
+        npm run build

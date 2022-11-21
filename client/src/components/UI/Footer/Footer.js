@@ -8,8 +8,8 @@ const Footer = (props) => {
                 <div className={classes.Footer}>
                     <div className={classes.bio}>
                         <h3>About</h3>
-                        <p className="grey-text text-lighten-4">I am a self motivated Full Stack Web Developer looking for work. 
-                        My strengths are in using React.js for frontend and Node.js for backend. I host my websites using Ubuntu servers on AWS lightsail.</p>
+                        <p className="grey-text text-lighten-4">I am a software developer from southern california. Over the last few years I have been building applications  
+                        using React, React Native and Node. I have some examples hosted using Ubuntu servers from Amazon Web Services.</p>
                     </div>
                     <div className={classes.connect}>
                         <h3 className="white-text">Categories</h3>

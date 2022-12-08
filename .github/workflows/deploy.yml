@@ -16,18 +16,12 @@ jobs:
     - name: Use Node
       uses: actions/setup-node@v3
       with:
-        node-version: 19
+        node-version: 16.18.1
     - run: |
         cd server
         npm ci
         cd ../client
         npm ci
-  build:
-    needs: getCode
-    runs-on: self-hosted
-    steps: 
-    - run: |
-        cd client
         npm run build
         cd ..
         pm2 stop 1

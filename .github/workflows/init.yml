@@ -14,13 +14,14 @@ jobs:
       with:
         node-version: 19
     - run: |
+        cd server
         npm ci
-        cd frontend
+        cd ../client
         npm ci
   build:
     needs: getCode
     runs-on: self-hosted
     steps: 
     - run: |
-        cd frontend
+        cd client
         npm run build

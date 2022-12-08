@@ -1,0 +1,109 @@
+name: Deployment
+on: 
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - main
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: cache-client-node-modules-${{ hashFiles('**/client/package-lock.json') }}
+#      - name: install dependencies
+#        run: cd server && npm ci
+      - name: install dependencies
+        run: cd client && npm ci
+#       - name: Load & cache dependencies
+#         id: cache-deps
+#         uses: ./.github/actions/cached-deps
+#         with:
+#           caching: 'false'
+#       - name: Output information
+#         run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
+      - name: Lint code
+        run: cd client && npm run lint
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: cache-client-node-modules-${{ hashFiles('**/client/package-lock.json') }}
+#      - name: install dependencies
+#        run: cd server && npm ci
+      - name: install dependencies
+        run: cd client && npm ci
+      - name: Test code
+        run: cd client && npm run test
+#       - name: Load & cache dependencies
+#         uses: ./.github/actions/cached-deps
+#       - name: Test code
+#         id: run-tests
+#         run: npm run test
+#       - name: Upload test report
+#         if: failure() && steps.run-tests.outcome == 'failure'
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: test-report
+#           path: test.json
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: cache-client-node-modules-${{ hashFiles('**/client/package-lock.json') }}
+      - name: install dependencies
+        run: cd client && npm ci
+#       - name: Get code
+#         uses: actions/checkout@v3
+#       - name: Load & cache dependencies
+#         uses: ./.github/actions/cached-deps
+      - name: Build website
+        run: cd client && npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-files
+          path: client/build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Get code
+#        uses: actions/checkout@v3
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
+          path: client/build
+      - name: Output contents
+        run: ls -l client
+#         run: ls
+#       - name: Deploy site
+#         id: deploy
+#         uses: ./.github/actions/deploy-s3-javascript
+#         env:
+#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         with:
+#           bucket: gha-custom-action-hosting
+#           dist-folder: ./dist
+#           # bucket-region: us-east-2
+#       - name: Output information
+#         run: |
+#           echo "Live URL: ${{ steps.deploy.outputs.website-url }}"

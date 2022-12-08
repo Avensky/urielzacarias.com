@@ -10,6 +10,7 @@ dev.js
 config/secrets.js
 config/config.env
 INSTRUCTIONS.md
+INSTRUCTIONS.md.old
 yarn.lock
 .cert
 # testing

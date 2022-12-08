@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Footer = (props) => {
         return (
@@ -61,7 +62,7 @@ const Footer = (props) => {
 };
 
 Footer.propTypes = {
-    isAuthenticated: bool,
-    isLogged: bool
+    isAuthenticated: PropTypes.bool,
+    isLogged: PropTypes.bool
 };
 export default Footer;

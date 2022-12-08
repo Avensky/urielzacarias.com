@@ -1,11 +1,7 @@
-name: Deploy
+name: Initial install
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request: 
-    branches: [ main ]
 
 jobs: 
   getCode:
@@ -18,19 +14,13 @@ jobs:
       with:
         node-version: 19
     - run: |
-        cd server
         npm ci
-        cd ../client
+        cd frontend
         npm ci
   build:
     needs: getCode
     runs-on: self-hosted
     steps: 
     - run: |
-        cd client
+        cd frontend
         npm run build
-        cd ..
-        pm2 stop 1
-        pm2 start 1
-        pm2 save
-        sudo service nginx restart

@@ -18,10 +18,4 @@ jobs:
         npm ci
         cd ../client
         npm ci
-  build:
-    needs: getCode
-    runs-on: self-hosted
-    steps: 
-    - run: |
-        cd client
         npm run build

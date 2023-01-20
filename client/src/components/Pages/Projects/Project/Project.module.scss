@@ -29,14 +29,15 @@
 
 .description{
 	background-color: rgba(0, 0, 0, 0.85);
-	padding: 1vh 2vw 3vh;
+	padding: 1vh 2px 3vh;
 }
 .descriptionTitle {
+	text-align: center;
 	font-size: 1.2em;
 }
 
 .description ul{
-	margin-left: 50px;
+	margin-left: 25px;
 }
 
 .description li{

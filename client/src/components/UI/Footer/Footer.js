@@ -8,9 +8,11 @@ const Footer = (props) => {
             <footer>
                 <div className={classes.Footer}>
                     <div className={classes.bio}>
-                        <h3>About</h3>
-                        <p className="grey-text text-lighten-4">I am a software developer from southern california. Over the last few years I have been building applications  
-                        using React, React Native and Node. I have some examples hosted using Ubuntu servers from Amazon Web Services.</p>
+                        <h3>About Me</h3>
+                        <p className="grey-text text-lighten-4">Hello! I am a self driven developer with a passion for problem solving
+                        and software development. Feel free to contact me regarding any questions you may have about me or any projects I can help out with. 
+
+                        </p>
                     </div>
                     <div className={classes.connect}>
                         <h3 className="white-text">Categories</h3>
@@ -19,12 +21,12 @@ const Footer = (props) => {
                             <NavLink to="/projects"                exact>Projects</NavLink>
                             <NavLink to="/about"                   exact>About</NavLink>
                             <NavLink to="/blog/posts"                    exact>Blog</NavLink>
-                            {props.isAuthenticated != null ? <NavLink to="/profile"          >Profile</NavLink> : null}
+                            {props.isAuthenticated != null ? <NavLink to="/profile"         >Profile</NavLink> : null}
                             {props.isAuthenticated != null ? <NavLink to="/orders"          >Orders</NavLink> : null}
 
-                            {props.isLogged != null ? <NavLink to="/profile"          >Profile</NavLink> : null}
-                            {!props.isLogged
-                                ? <NavLink to="/authentication"   >Sign in / Sign up</NavLink>
+                            {props.isLogged        != null ? <NavLink to="/profile"         >Profile</NavLink> : null}
+                            {!props.isLogged 
+                                ? <NavLink to="/authentication">Sign in / Sign up</NavLink>
                                 : <div className={classes.NavLink}><a  href="/api/logout">Logout</a></div>}
                         </ul>
                         {/*<ul>
@@ -39,7 +41,7 @@ const Footer = (props) => {
                     <div className={classes.projects}>
                         <h3 className="white-text">Contact</h3>
                         <ul className={classes.Contact}>
-                            <li><span className='fa fa-map-pin'  /> Address: 1674 Palm Ave #12 San Diego, CA 92154</li>
+                            <li><span className='fa fa-map-pin'  /> Address: San Diego, California, United States of America.</li>
                             <li><span className='fa fa-phone'    /> Phone: +1 (619) 621-7311</li>
                             <li><span className='fa fa-envelope' /> Email: urielzacarias@gmail.com</li>
                         </ul>

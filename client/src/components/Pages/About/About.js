@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './About.module.scss';
 import user from '../../../assets/images/me.jpg';
+
 const About = () => {
 
     let column = <div className={classes.column}>
@@ -16,10 +17,10 @@ const About = () => {
         <div >
             <div>
                 <h2 className="text-center brown-text"><i className="material-icons">group</i></h2>
-                <h5 className="text-center">User Experience Focused</h5>
+                <h5 className="text-center">Team`` Player </h5>
 
-                <p className="light">With React we can enhance user experience by increasing speeds and localizing rendering to single components. Yielding a more responsive user experience.</p>
-            </div>
+                <p className="light">Easy to work with and Enjoy working with others. Willing to listen and take advice. Hope to </p>
+            </div>  
         </div>
 
         <div>
@@ -38,27 +39,25 @@ const About = () => {
                 <figure className={classes.figure}>
                     <img src={user} alt='user' />
                 </figure>
-                <h1>Hello World, I&apos;m Uriel Zacarias.</h1>
+                <h1>Hello! Nice to meet ya, I&apos;m Uriel.</h1>
                 <div className={classes.bio}>
                     <p>
-                        I am a full stack web developer looking for an opportunity to grow.   
-                        I got my first certificate, &quot;Responsive Web Design&quot;, from FreeCodeCamp in March 2019. 
-                        I then completed the &quot;Full Stack Web Developer&quot; Nanodegree at Udacity in September 2019. 
-                        This certificate focused on building web applications using a Linux server (Ubuntu) and a Flask (Python) framework.
+                        I am a software developer from Southern Califoria and I like to develop applications on my free time. 
+                        I love learning new technologies and improving my skills. Thanks for checking out my site! You can see more information 
+                        about my skills and qualifications on LinkedIn, links are located at the bottom of the page.
                     </p>
                     
                     <p>
-                        Iv&apos;e since then focused my research on Javascript frameworks. 
-                        I completed &quot;React-The Complete Guide (Incl Hooks, React Router, Redux)&quot; certificate at Udemy, in April 2020. 
-                        I preffer building web applications using Express.js and React.js, although I am open to learning new technologies.
+                        Some of my hobbies include singing, playing guitar, audio recording, video editing, drawing, and mountain biking. 
+                        As for app development, my passion began when I bought a premade website for my guild on 
+                        world of warcraft. I was fascinated by the code and it sparked my interest in writing and hosting my own website.
+                    </p>
+                    <p>
+                        I started to write on Blogger and upload videos on YouTube. I had a lot of fun customizing content and it led me to taking online courses on 
+                        hmtl, css, react, react native, and full stack web develpment. For some samples of my work, please checkout the projects section or visit my GitHub! 
+                        Thank you so much for taking the time to read this and have a nice day!
                     </p>
                 </div>
-                {/*  Icon Section   */}
-                {column}
-
-                
-                
-                
             </div>
         </div>
     );

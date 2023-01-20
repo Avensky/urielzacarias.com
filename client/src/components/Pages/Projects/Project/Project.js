@@ -35,12 +35,16 @@ const project = (props) => (
             ?   <div className={classes.description} >
                     <div className={classes.descriptionTitle}>{props.description}</div>
                     <ul>
-                        <li>{props.item1}</li>
-                        <li>{props.item2}</li>
-                        <li>{props.item3}</li>
-                        <li>{props.item4}</li>
-                        <li>{props.item5}</li>
-                        <li>{props.item6}</li>
+                        {props.item1 ? <li>{props.item1 }</li>: null}
+                        {props.item2 ? <li>{props.item2 }</li>: null}
+                        {props.item3 ? <li>{props.item3 }</li>: null}
+                        {props.item4 ? <li>{props.item4 }</li>: null}
+                        {props.item5 ? <li>{props.item5 }</li>: null}
+                        {props.item6 ? <li>{props.item6 }</li>: null}
+                        {props.item7 ? <li>{props.item7 }</li>: null}
+                        {props.item8 ? <li>{props.item8 }</li>: null}
+                        {props.item9 ? <li>{props.item9 }</li>: null}
+                        {props.item10? <li>{props.item10}</li>: null}
                     </ul>
                 </div>
             : null }

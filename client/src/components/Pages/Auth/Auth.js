@@ -111,7 +111,7 @@ const Auth = props => {
                     
                     <button type='submit' className={[classes.Btn, "btn-primary"].join(' ')}>
                         <a  
-                            href="/api/facebook"
+                            //href="/api/facebook"
                             //onClick={socialAuthHandler}
                         ><div className={classes.BtnDiv}><span className="fa fa-facebook" /> Facebook</div></a>
                     </button>
@@ -121,7 +121,8 @@ const Auth = props => {
                     </button>
                     */}
                     <button className={[classes.Btn, "btn-danger"].join(' ')}>
-                        <a href="/api/google"><div className={classes.BtnDiv}><span className="fa fa-google-plus" /> Google+</div></a>
+                        <a //href="/api/google"
+                        ><div className={classes.BtnDiv}><span className="fa fa-google-plus" /> Google+</div></a>
                     </button>
                 </Auxiliary>
                 : socialAuth = null;

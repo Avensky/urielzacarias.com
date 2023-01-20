@@ -60,8 +60,9 @@ const Profile = (props) =>{
             userLink        = {true}
             icon            = "fa-facebook"
             mystyle         = "btn-primary"
-            provider        = '/api/connect/facebook'
-            providerUnlink  = '/api/unlink/facebook' />);
+            //provider        = '/api/connect/facebook'
+            //providerUnlink  = '/api/unlink/facebook' 
+            />);
     
     google = (
         <Link
@@ -69,8 +70,9 @@ const Profile = (props) =>{
             userLink        = {true}
             icon            = "fa-google-plus"
             mystyle         = "btn-danger"
-            provider        = '/api/connect/google'
-            providerUnlink  = '/api/unlink/google' />);
+            //provider        = '/api/connect/google'
+            //providerUnlink  = '/api/unlink/google' 
+            />);
 
     if (props.payload['local']) {
         local = (

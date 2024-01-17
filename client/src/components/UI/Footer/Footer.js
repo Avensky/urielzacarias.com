@@ -20,7 +20,7 @@ const Footer = (props) => {
                             <NavLink to="/home" className="LogoName" exact>Home</NavLink>
                             <NavLink to="/projects"                exact>Projects</NavLink>
                             <NavLink to="/about"                   exact>About</NavLink>
-                            <NavLink to="/blog/posts"                    exact>Blog</NavLink>
+                            {/* <NavLink to="/blog/posts"                    exact>Blog</NavLink> */}
                             {props.isAuthenticated != null ? <NavLink to="/profile"         >Profile</NavLink> : null}
                             {props.isAuthenticated != null ? <NavLink to="/orders"          >Orders</NavLink> : null}
 

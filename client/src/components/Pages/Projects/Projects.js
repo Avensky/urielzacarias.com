@@ -1,30 +1,13 @@
 import React        from 'react';
-import caringvegan  from '../../../assets/images/caringvegan2.png';
-import author       from '../../../assets/images/author2.png';
-import avensky      from '../../../assets/images/avensky.png';
 import classes      from './Projects.module.scss';
 import Project      from './Project/Project';
 
-const Projects = props => (
-    <div className={['page-wrapper', classes.ProjectsLayout].join(' ')}>
+const Projects = props => {
+    let caringvegan = 'https://caring-vegan.s3.us-west-2.amazonaws.com/assets/caringVegan.png';
+    let BetterDates = 'https://caring-vegan.s3.us-west-2.amazonaws.com/assets/betterDates.png';
+    
+    return <div className={['page-wrapper', classes.ProjectsLayout].join(' ')}>
         <div className={classes.Projects}>
-        <Project 
-                ThumbnailTitle='Avensky'
-                pic={avensky}
-                link={'https://www.avensky.com/'}
-                description="Modern E-commerce Web App"
-                item1='MongoDB'
-                item2='Express'
-                item3='React'
-                item4='Node'
-                item5='TypeScript'
-                item6='HTML'
-                item7='Css'
-                item8='Automatic Deployment'
-                item9='Automatic Testing'
-                item10='Automatic Emails'
-            />
-
             <Project 
                 ThumbnailTitle="CaringVegan"
                 pic={caringvegan}
@@ -40,20 +23,20 @@ const Projects = props => (
                 item8='Stripe payments'
             />
             <Project 
-                ThumbnailTitle="Overthrone"
-                pic={author}
-                link={'https://avenskydev.com'}
-                description="Book website with info on the authors, the characters, and store."
+                ThumbnailTitle="BetterDates"
+                pic={BetterDates}
+                // link={'https://avenskydev.com'}
+                description="Mobile app for ios and android. It helps users plan their next date"
                 item1='MongoDB'
                 item2='Express'
-                item3='React'
+                item3='React-Native'
                 item4='Node'
                 item6='HTML'
                 item7='Css'
-                item8='Stripe payments'
+                // item8='Stripe payments'
             />
         </div>
-    </div>
-);
+    </div>;
+};
 
 export default Projects;
